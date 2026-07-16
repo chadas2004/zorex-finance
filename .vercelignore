@@ -1,0 +1,7 @@
+# Ces fichiers ne sont pas nécessaires en production
+# (vendor/ est déjà commité avec l'autoload généré).
+# Ils sont exclus car ils créent des conflits de nommage
+# avec Vercel (même nom de fichier, extension différente).
+
+composer.lock
+api/vendor/composer/installed.php
