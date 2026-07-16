@@ -1,0 +1,17 @@
+{
+    "name": "glekadas/morafinance",
+    "autoload": {
+        "psr-4": {
+            "Glekadas\\Morafinance\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "chadas2004",
+            "email": "chadasglele@gmail.com"
+        }
+    ],
+    "require": {
+        "phpmailer/phpmailer": "^7.0"
+    }
+}

@@ -1,0 +1,251 @@
+/* ==========================================================================
+   Custom Styles - MoraFinance
+   ========================================================================== */
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+/* Grid Pattern Background */
+.bg-grid-pattern {
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Dark Mode Grid Pattern */
+.dark .bg-grid-pattern {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+}
+
+/* ==========================================================================
+   Navigation
+   ========================================================================== */
+
+.nav-link {
+  @apply px-4 py-2 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors;
+}
+
+.mobile-nav-link {
+  @apply block px-4 py-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium;
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+.btn-primary {
+  @apply inline-flex items-center gap-2 px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-semibold rounded-lg shadow-lg shadow-primary-600/30 hover:shadow-xl hover:shadow-primary-600/40 transition-all duration-300 transform hover:-translate-y-0.5;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center gap-2 px-6 py-3 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-900 dark:text-white font-semibold rounded-lg transition-all duration-300;
+}
+
+.btn-lg {
+  @apply px-8 py-4 text-lg;
+}
+
+/* ==========================================================================
+   Feature Cards
+   ========================================================================== */
+
+.feature-card {
+  @apply bg-white dark:bg-gray-800 rounded-xl p-8 text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-2 border border-gray-100 dark:border-gray-700;
+}
+
+.feature-icon {
+  @apply w-16 h-16 mx-auto mb-4 rounded-2xl flex items-center justify-center text-3xl transition-transform duration-300 group-hover:scale-110;
+}
+
+.feature-title {
+  @apply text-xl font-bold mb-2 text-gray-900 dark:text-white;
+}
+
+.feature-desc {
+  @apply text-gray-600 dark:text-gray-300;
+}
+
+/* ==========================================================================
+   Offer Cards
+   ========================================================================== */
+
+.offer-card {
+  @apply bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700;
+}
+
+.offer-icon {
+  @apply w-20 h-20 rounded-2xl flex items-center justify-center text-4xl text-white mb-6 shadow-lg transition-transform duration-300 group-hover:scale-110;
+}
+
+.offer-title {
+  @apply text-2xl font-bold mb-3 text-gray-900 dark:text-white;
+}
+
+.offer-desc {
+  @apply text-gray-600 dark:text-gray-300 mb-6;
+}
+
+.offer-list {
+  @apply space-y-3 mb-8;
+}
+
+.offer-list li {
+  @apply flex items-center gap-2 text-gray-700 dark:text-gray-300;
+}
+
+.offer-list li i {
+  @apply text-green-500 flex-shrink-0;
+}
+
+.offer-cta {
+  @apply inline-flex items-center justify-center gap-2 w-full px-6 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-all duration-300 shadow-lg hover:shadow-xl;
+}
+
+/* ==========================================================================
+   Process Steps
+   ========================================================================== */
+
+.process-step {
+  @apply relative bg-white dark:bg-gray-800 rounded-2xl p-8 text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-2 border border-gray-100 dark:border-gray-700;
+}
+
+.process-number {
+  @apply absolute -top-4 -right-4 w-12 h-12 bg-primary-600 text-white rounded-full flex items-center justify-center text-xl font-bold shadow-lg;
+}
+
+.process-icon {
+  @apply w-16 h-16 mx-auto mb-4 rounded-2xl flex items-center justify-center text-3xl;
+}
+
+.process-title {
+  @apply text-xl font-bold mb-3 text-gray-900 dark:text-white;
+}
+
+.process-desc {
+  @apply text-gray-600 dark:text-gray-300;
+}
+
+/* ==========================================================================
+   Value Cards
+   ========================================================================== */
+
+.value-card {
+  @apply bg-white dark:bg-gray-800 rounded-xl p-8 text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border border-gray-100 dark:border-gray-700;
+}
+
+.value-icon {
+  @apply w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center text-white text-3xl shadow-lg;
+}
+
+.value-title {
+  @apply text-xl font-bold mb-2 text-gray-900 dark:text-white;
+}
+
+.value-desc {
+  @apply text-gray-600 dark:text-gray-300;
+}
+
+/* ==========================================================================
+   Testimonials
+   ========================================================================== */
+
+.testimonial-card {
+  @apply bg-gray-50 dark:bg-gray-700/50 rounded-xl p-8 border-l-4 border-primary-600;
+}
+
+/* ==========================================================================
+   Form Styles
+   ========================================================================== */
+
+.form-group {
+  @apply space-y-2;
+}
+
+.form-label {
+  @apply flex items-center gap-2 text-sm font-semibold text-gray-700 dark:text-gray-300;
+}
+
+.form-input {
+  @apply w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all;
+}
+
+.radio-card {
+  @apply border-2 border-gray-200 dark:border-gray-700 rounded-lg cursor-pointer transition-all hover:border-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/10;
+}
+
+.radio-card-active {
+  @apply border-primary-600 bg-primary-50 dark:bg-primary-900/20;
+}
+
+/* ==========================================================================
+   FAQ
+   ========================================================================== */
+
+.faq-item {
+  @apply bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden transition-all;
+}
+
+.faq-item-active {
+  @apply border-primary-600 shadow-lg;
+}
+
+.faq-question {
+  @apply w-full flex items-center justify-between p-4 text-left font-semibold text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors;
+}
+
+.faq-answer {
+  @apply px-4 pb-4 text-gray-600 dark:text-gray-300;
+}
+
+/* ==========================================================================
+   Social Links
+   ========================================================================== */
+
+.social-link {
+  @apply w-10 h-10 rounded-lg bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-400 transition-all text-xl;
+}
+
+.social-link-footer {
+  @apply w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-primary-600 hover:text-white transition-all text-xl;
+}
+
+/* ==========================================================================
+   Footer Links
+   ========================================================================== */
+
+.footer-link {
+  @apply text-gray-400 hover:text-white transition-colors inline-block;
+}
+
+/* ==========================================================================
+   Animations
+   ========================================================================== */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* ==========================================================================
+   Utilities
+   ========================================================================== */
+
+.text-balance {
+  text-wrap: balance;
+}

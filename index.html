@@ -1,0 +1,1991 @@
+<!DOCTYPE html>
+<html lang="de" x-data="app()">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ===== SEO META TAGS ===== -->
+<title>Zorex Finance · Kredite in DE, PT, GR, AT, IT, CH</title>  <meta name="description"
+    content="Zorex Finance bietet schnelle und sichere Finanzierungslösungen für Privat- und Geschäftskunden in Deutschland, Portugal und Griechenland. Persönliche Darlehen, Immobilienfinanzierung und Autokredite ab 2,9% p.a.">
+  <meta name="keywords"
+    content="Kredit, Darlehen, Finanzierung, Deutschland, Portugal, Griechenland, Immobilienkredit, Autokredit, Privatkredit, Zorex Finance, Schnellkredit, Günstige Zinsen">
+  <meta name="author" content="Zorex Finance">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="de">
+  <meta name="revisit-after" content="7 days">
+  <link rel="canonical" href="https://zorex-finance.lat/">
+
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zorex-finance.lat/">
+  <meta property="og:title" content="Zorex Finance | Finanzlösungen in Europa">
+  <meta property="og:description"
+    content="Schnelle Kredite und Finanzierungen für Privat- und Geschäftskunden in Deutschland, Portugal und Griechenland. Tagesgenaue Bearbeitung, transparente Konditionen.">
+  <meta property="og:image" content="https://zorex-finance.lat/assets/og-image.jpg">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:locale:alternate" content="pt_PT">
+  <meta property="og:locale:alternate" content="el_GR">
+  <meta property="og:locale:alternate" content="en_GB">
+  <meta property="og:locale:alternate" content="fr_FR">
+  <meta property="og:locale:alternate" content="it_IT">
+  <meta property="og:locale:alternate" content="es_ES">
+  <meta property="og:site_name" content="Zorex Finance">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Zorex Finance | Finanzlösungen in Europa">
+  <meta name="twitter:description" content="Schnelle Kredite für Deutschland, Portugal und Griechenland. Ab 2,9% p.a.">
+
+  <!-- Serial / Registration Number -->
+  <meta name="application-id" content="ZRX-FIN-2024-EU-004817">
+  <meta name="registration-number" content="ZRX-FIN-2024-EU-004817">
+
+  <!-- Geo Tags -->
+  <meta name="geo.region" content="DE">
+  <meta name="geo.placename" content="Berlin, Deutschland">
+  <meta name="DC.language" content="de">
+
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FinancialService",
+    "name": "Zorex Finance",
+    "description": "Finanzierungslösungen für Privatpersonen und Unternehmen in Deutschland, Portugal und Griechenland",
+    "url": "https://zorex-finance.lat",
+    "telephone": "+491771320599",
+    "email": "contact@zorex-finance.de",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "12 Finanzstraße",
+      "addressLocality": "Berlin",
+      "addressCountry": "DE"
+    },
+    "areaServed": ["DE", "PT", "GR", "AT", "IT", "CH"],
+    "serviceType": ["Privatkredit", "Immobilienkredit", "Autokredit"],
+    "identifier": {
+      "@type": "PropertyValue",
+      "name": "Registrierungsnummer",
+      "value": "ZRX-FIN-2024-EU-004817"
+    },
+    "sameAs": [
+      "https://facebook.com/zorexfinance",
+      "https://linkedin.com/company/zorexfinance"
+    ]
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23042C53'/><path d='M16 4L6 10v7c0 6.6 4.4 12.8 10 14.4 5.6-1.6 10-7.8 10-14.4V10L16 4z' fill='none' stroke='%23FAC775' stroke-width='2'/></svg>">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+  <style>
+    :root {
+      --navy: #042C53;
+      --navy-mid: #0C447C;
+      --blue: #185FA5;
+      --blue-light: #378ADD;
+      --gold: #FAC775;
+      --gold-dark: #EF9F27;
+      --gold-deeper: #BA7517;
+      --cream: #FAFAF8;
+      --surface: #FFFFFF;
+      --muted: #6B7280;
+      --border: rgba(4, 44, 83, 0.1);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: #1a1a1a;
+    }
+
+    .font-display {
+      font-family: 'Playfair Display', serif;
+    }
+
+    .text-navy {
+      color: var(--navy);
+    }
+
+    .text-gold {
+      color: var(--gold-dark);
+    }
+
+    .bg-navy {
+      background: var(--navy);
+    }
+
+    .bg-gold {
+      background: var(--gold);
+    }
+
+    .border-gold {
+      border-color: var(--gold);
+    }
+
+    /* Dark mode */
+    .dark {
+      background: #0a1628;
+      color: #e8edf4;
+    }
+
+    .dark body {
+      background: #0a1628;
+      color: #e8edf4;
+    }
+
+    .dark .card-surface {
+      background: #0f2040 !important;
+      border-color: rgba(255, 255, 255, 0.08) !important;
+    }
+
+    .dark .text-gray-600 {
+      color: #94a3b8 !important;
+    }
+
+    .dark .text-gray-700 {
+      color: #cbd5e1 !important;
+    }
+
+    .dark .input-field {
+      background: #0f2040 !important;
+      border-color: rgba(255, 255, 255, 0.1) !important;
+      color: #e8edf4 !important;
+    }
+
+    .dark .nav-bg {
+      background: rgba(10, 22, 40, 0.95) !important;
+    }
+
+    .dark .section-light {
+      background: #0a1628 !important;
+    }
+
+    .dark .section-alt {
+      background: #0d1c35 !important;
+    }
+
+    .dark .stat-card {
+      background: #0f2040 !important;
+      border-color: rgba(255, 255, 255, 0.08) !important;
+    }
+
+    .dark .offer-card {
+      background: #0f2040 !important;
+      border-color: rgba(255, 255, 255, 0.08) !important;
+    }
+
+    .dark .step-card {
+      background: #0f2040 !important;
+      border-color: rgba(255, 255, 255, 0.08) !important;
+    }
+
+    .dark .trust-bar {
+      background: #0f2040 !important;
+    }
+
+    .dark .footer-link-col {
+      color: #94a3b8 !important;
+    }
+
+    /* Header */
+    .nav-bg {
+      background: rgba(255, 255, 255, 0.97);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-link {
+      font-size: 14px;
+      font-weight: 400;
+      color: #374151;
+      padding: 6px 0;
+      position: relative;
+      transition: color 0.2s;
+      text-decoration: none;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1.5px;
+      background: var(--navy);
+      transition: width 0.25s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--navy);
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .dark .nav-link {
+      color: #94a3b8;
+    }
+
+    .dark .nav-link:hover {
+      color: #FAC775;
+    }
+
+    .dark .nav-link:hover::after {
+      background: #FAC775;
+    }
+
+    /* Hero */
+    .hero-bg {
+      background: linear-gradient(145deg, #031e3a 0%, var(--navy) 40%, #0C447C 75%, #1a4f8c 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      background-image: linear-gradient(rgba(250, 199, 117, 0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(250, 199, 117, 0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+      position: absolute;
+      inset: 0;
+    }
+
+    .hero-glow {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(250, 199, 117, 0.15) 0%, transparent 65%);
+      top: -100px;
+      right: -100px;
+    }
+
+    .hero-glow2 {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(24, 95, 165, 0.3) 0%, transparent 65%);
+      bottom: -50px;
+      left: -50px;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(250, 199, 117, 0.12);
+      border: 1px solid rgba(250, 199, 117, 0.25);
+      border-radius: 50px;
+      padding: 5px 14px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--gold);
+      letter-spacing: 0.02em;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(34px, 5vw, 58px);
+      font-weight: 600;
+      color: #ffffff;
+      line-height: 1.15;
+    }
+
+    .hero-title .accent {
+      color: var(--gold);
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: 600;
+      font-size: 14px;
+      padding: 13px 28px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-gold:hover {
+      background: #FFD48A;
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 14px;
+      font-weight: 400;
+      padding: 13px 24px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-outline:hover {
+      border-color: rgba(255, 255, 255, 0.5);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    /* Cards */
+    .card-surface {
+      background: var(--surface);
+      border: 1px solid rgba(4, 44, 83, 0.08);
+      border-radius: 16px;
+      transition: all 0.25s ease;
+    }
+
+    .card-surface:hover {
+      border-color: rgba(4, 44, 83, 0.15);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(4, 44, 83, 0.1);
+    }
+
+    /* Offer cards */
+    .offer-rate {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .dark .offer-rate {
+      color: var(--gold);
+    }
+
+    .offer-featured {
+      border: 2px solid var(--gold-dark) !important;
+    }
+
+    .offer-featured:hover {
+      box-shadow: 0 12px 40px rgba(250, 199, 117, 0.15) !important;
+    }
+
+    /* Steps */
+    .step-number {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: var(--gold);
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* Form */
+    .input-field {
+      width: 100%;
+      background: #F8FAFC;
+      border: 1.5px solid #E2E8F0;
+      border-radius: 10px;
+      padding: 13px 16px;
+      font-size: 14px;
+      font-family: 'DM Sans', sans-serif;
+      color: #1a1a1a;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+
+    .input-field:focus {
+      border-color: var(--navy);
+      box-shadow: 0 0 0 3px rgba(4, 44, 83, 0.08);
+    }
+
+    .input-field::placeholder {
+      color: #9CA3AF;
+    }
+
+    .submit-btn {
+      width: 100%;
+      background: var(--navy);
+      color: var(--gold);
+      font-weight: 600;
+      font-size: 15px;
+      padding: 15px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .submit-btn:hover {
+      background: #0C447C;
+      transform: translateY(-1px);
+    }
+
+    .stars {
+      color: var(--gold-dark);
+      font-size: 14px;
+    }
+
+    .trust-badge-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 18px;
+      border-radius: 50px;
+      background: rgba(4, 44, 83, 0.04);
+      border: 1px solid rgba(4, 44, 83, 0.07);
+    }
+
+    .dark .trust-badge-item {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(255, 255, 255, 0.07);
+    }
+
+    @keyframes pulse-ring {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5);
+      }
+
+      70% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 14px rgba(34, 197, 94, 0);
+      }
+
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+      }
+    }
+
+    .wa-btn {
+      animation: pulse-ring 2.5s ease-in-out infinite;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-up {
+      animation: fadeUp 0.6s ease forwards;
+    }
+
+    .delay-1 {
+      animation-delay: 0.1s;
+      opacity: 0;
+    }
+
+    .delay-2 {
+      animation-delay: 0.2s;
+      opacity: 0;
+    }
+
+    .delay-3 {
+      animation-delay: 0.3s;
+      opacity: 0;
+    }
+
+    .delay-4 {
+      animation-delay: 0.4s;
+      opacity: 0;
+    }
+
+    .lang-menu {
+      position: absolute;
+      right: 0;
+      top: calc(100% + 8px);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+      min-width: 160px;
+      z-index: 100;
+      overflow: hidden;
+    }
+
+    .dark .lang-menu {
+      background: #0f2040;
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .lang-option:hover {
+      background: rgba(4, 44, 83, 0.05);
+    }
+
+    .dark .lang-option:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .section-eyebrow {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold-deeper);
+      background: rgba(250, 199, 117, 0.12);
+      padding: 4px 12px;
+      border-radius: 50px;
+      margin-bottom: 12px;
+    }
+
+    .section-title-main {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(26px, 4vw, 38px);
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.2;
+    }
+
+    .dark .section-title-main {
+      color: #e8edf4;
+    }
+
+    .divider-gold {
+      width: 48px;
+      height: 2px;
+      background: var(--gold-dark);
+      border-radius: 2px;
+      margin: 14px 0;
+    }
+
+    .footer-bg {
+      background: #021629;
+    }
+
+    .footer-link:hover {
+      color: var(--gold) !important;
+    }
+
+    .mobile-menu {
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(20px);
+    }
+
+    .dark .mobile-menu {
+      background: rgba(10, 22, 40, 0.98);
+    }
+
+    .about-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+
+    select.input-field {
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%236B7280' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+    }
+
+    select.input-field option {
+      color: #1a1a1a;
+      background: white;
+    }
+
+    /* Serial badge */
+    .serial-badge {
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.3);
+      font-family: monospace;
+      letter-spacing: 0.08em;
+    }
+
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 30px;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50 dark:bg-gray-950 transition-colors duration-300"
+  :class="$store.theme.current === 'dark' ? 'dark' : ''">
+
+  <script>
+    document.addEventListener('alpine:init', () => {
+      Alpine.store('theme', {
+        current: localStorage.getItem('theme') || 'light',
+        toggle() { this.current = this.current === 'light' ? 'dark' : 'light'; document.documentElement.classList.toggle('dark', this.current === 'dark'); localStorage.setItem('theme', this.current); },
+        init() { document.documentElement.classList.toggle('dark', this.current === 'dark'); }
+      });
+    });
+  </script>
+
+  <!-- ===== HEADER ===== -->
+  <header class="fixed w-full nav-bg z-50 transition-all duration-300" :class="{'shadow-lg': scrolled}"
+    x-data="{scrolled: false}" @scroll.window="scrolled = window.scrollY > 50">
+    <div class="max-w-7xl mx-auto px-5 py-4 flex items-center justify-between">
+
+      <a href="#home" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 bg-navy rounded-xl flex-shrink-0"
+          style="display:flex;align-items:center;justify-content:center">
+          <div class="w-10 h-10 rounded-xl overflow-hidden flex-shrink-0 bg-white shadow-sm border border-gray-200">
+            <img src="assets/logo.png" alt="Zorex Finance Logo" class="w-full h-full object-cover">
+          </div>
+
+        </div>
+        <div>
+          <span class="text-[17px] font-semibold text-navy dark:text-white"
+            style="font-family:'Playfair Display',serif">Zorex Finance</span>
+          <div class="text-[10px] text-gray-400 font-normal leading-none mt-0.5" x-text="$t('brand_tagline')"></div>
+        </div>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8">
+        <a href="#home" class="nav-link" x-text="$t('nav.home')"></a>
+        <a href="#offers" class="nav-link" x-text="$t('nav.offres')"></a>
+        <a href="#process" class="nav-link" x-text="$t('nav.procedure')"></a>
+        <a href="#about" class="nav-link" x-text="$t('nav.apropos')"></a>
+      </nav>
+
+      <div class="hidden md:flex items-center gap-3">
+        <button @click="$store.theme.toggle()"
+          class="w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+          <i class="bi bi-sun text-gray-600 dark:text-gray-300" x-show="$store.theme.current === 'light'"></i>
+          <i class="bi bi-moon text-gray-300" x-show="$store.theme.current === 'dark'"></i>
+        </button>
+
+        <div class="relative" x-data="{open:false}">
+          <button @click="open=!open"
+            class="flex items-center gap-2 px-3 h-9 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition text-sm font-medium">
+            <img :src="currentLang.flag" alt="" class="w-5 h-3.5 rounded-sm object-cover">
+            <span x-text="currentLang.label" class="text-gray-700 dark:text-gray-300"></span>
+            <i class="bi bi-chevron-down text-xs text-gray-500" :class="open ? 'rotate-180' : ''"
+              style="transition:transform 0.2s"></i>
+          </button>
+          <div x-show="open" x-cloak @click.outside="open=false" class="lang-menu"
+            x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0 scale-95"
+            x-transition:enter-end="opacity-100 scale-100">
+            <template x-for="lang in languages" :key="lang.code">
+              <button @click="selectLang(lang);open=false"
+                class="lang-option flex items-center gap-3 w-full px-4 py-3 text-sm text-gray-700 dark:text-gray-200">
+                <img :src="lang.flag" alt="" class="w-5 h-3.5 rounded-sm object-cover">
+                <span x-text="lang.name"></span>
+                <i class="bi bi-check ml-auto text-navy dark:text-gold" x-show="currentLang.code === lang.code"></i>
+              </button>
+            </template>
+          </div>
+        </div>
+
+        <a href="#form" class="btn-gold text-sm !py-2.5 !px-5 rounded-xl no-underline" x-text="$t('nav.demande')"></a>
+      </div>
+
+      <div class="md:hidden flex items-center gap-2">
+        <button @click="$store.theme.toggle()"
+          class="w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-700">
+          <i class="bi bi-sun text-gray-600 dark:text-gray-300" x-show="$store.theme.current === 'light'"></i>
+          <i class="bi bi-moon text-gray-300" x-show="$store.theme.current === 'dark'"></i>
+        </button>
+        <button @click="mobileOpen=!mobileOpen"
+          class="w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-700">
+          <i class="bi bi-list text-xl text-gray-700 dark:text-gray-300" x-show="!mobileOpen"></i>
+          <i class="bi bi-x-lg text-lg text-gray-700 dark:text-gray-300" x-show="mobileOpen"></i>
+        </button>
+      </div>
+    </div>
+
+    <div x-show="mobileOpen" x-cloak @click.outside="mobileOpen=false"
+      class="md:hidden mobile-menu border-t border-gray-100 dark:border-gray-800"
+      x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 -translate-y-2"
+      x-transition:enter-end="opacity-100 translate-y-0">
+      <div class="px-5 py-5 space-y-1">
+        <a href="#home" @click="mobileOpen=false"
+          class="block py-3 px-4 rounded-xl text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 font-medium"
+          x-text="$t('nav.home')"></a>
+        <a href="#offers" @click="mobileOpen=false"
+          class="block py-3 px-4 rounded-xl text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 font-medium"
+          x-text="$t('nav.offres')"></a>
+        <a href="#process" @click="mobileOpen=false"
+          class="block py-3 px-4 rounded-xl text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 font-medium"
+          x-text="$t('nav.procedure')"></a>
+        <a href="#about" @click="mobileOpen=false"
+          class="block py-3 px-4 rounded-xl text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 font-medium"
+          x-text="$t('nav.apropos')"></a>
+        <a href="#form" @click="mobileOpen=false"
+          class="block mt-3 py-3 px-4 rounded-xl bg-navy text-gold text-center font-semibold"
+          x-text="$t('nav.demande')"></a>
+        <div class="pt-3 border-t border-gray-100 dark:border-gray-800" x-data="{openLang:false}">
+          <button @click="openLang=!openLang"
+            class="flex items-center gap-3 w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800">
+            <img :src="currentLang.flag" alt="" class="w-5 h-3.5 rounded-sm object-cover">
+            <span x-text="currentLang.name" class="font-medium text-sm text-gray-700 dark:text-gray-200"></span>
+            <i class="bi bi-chevron-down text-xs text-gray-500 ml-auto" :class="openLang ? 'rotate-180' : ''"></i>
+          </button>
+          <div x-show="openLang" class="mt-1 rounded-xl overflow-hidden border border-gray-100 dark:border-gray-700">
+            <template x-for="lang in languages" :key="lang.code">
+              <button @click="selectLang(lang);openLang=false;mobileOpen=false"
+                class="lang-option flex items-center gap-3 w-full px-4 py-3 text-sm text-gray-700 dark:text-gray-200">
+                <img :src="lang.flag" alt="" class="w-5 h-3.5 rounded-sm object-cover">
+                <span x-text="lang.name"></span>
+                <i class="bi bi-check ml-auto text-navy dark:text-yellow-400"
+                  x-show="currentLang.code === lang.code"></i>
+              </button>
+            </template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ===== HERO ===== -->
+  <section id="home" class="hero-bg min-h-screen pt-24 flex flex-col justify-center" x-data="heroCarousel()"
+    x-init="init()">
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-glow2"></div>
+    <div class="max-w-7xl mx-auto px-5 py-16 md:py-20 relative z-10 w-full">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <div class="hero-tag fade-up delay-1">
+            <i class="bi bi-shield-check-fill"></i>
+            <span x-text="$t('hero.tag')"></span>
+          </div>
+          <h1 class="hero-title mt-5 mb-5 fade-up delay-2">
+            <span x-html="$t('hero.title')"></span>
+          </h1>
+          <p class="text-white/65 text-[15px] leading-relaxed mb-8 max-w-md fade-up delay-3"
+            x-text="$t('hero.subtitle')"></p>
+          <div class="flex flex-wrap gap-3 mb-10 fade-up delay-4">
+            <a href="#form" class="btn-gold no-underline" x-text="$t('hero.cta_primary')"></a>
+            <a href="#offers" class="btn-outline no-underline" x-text="$t('hero.cta_secondary')"></a>
+          </div>
+          <div class="flex flex-wrap gap-3">
+            <div class="flex items-center gap-2 text-white/55 text-xs"><i
+                class="bi bi-check-circle-fill text-green-400 text-sm"></i><span x-text="$t('hero.trust1')"></span>
+            </div>
+            <div class="flex items-center gap-2 text-white/55 text-xs"><i
+                class="bi bi-check-circle-fill text-green-400 text-sm"></i><span x-text="$t('hero.trust2')"></span>
+            </div>
+            <div class="flex items-center gap-2 text-white/55 text-xs"><i
+                class="bi bi-check-circle-fill text-green-400 text-sm"></i><span x-text="$t('hero.trust3')"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="fade-up delay-3">
+          <div class="rounded-2xl overflow-hidden border border-white/10 bg-white/8 backdrop-blur-sm">
+            <div class="relative h-52 overflow-hidden rounded-t-2xl">
+              <template x-for="(slide, idx) in slides" :key="idx">
+                <div x-show="current === idx" x-transition:enter="transition duration-700"
+                  x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                  x-transition:leave="transition duration-700" x-transition:leave-start="opacity-100"
+                  x-transition:leave-end="opacity-0" class="absolute inset-0">
+                  <img :src="slide.img" :alt="$t(slide.titleKey)" class="w-full h-full object-cover"
+                    onerror="this.src='https://images.unsplash.com/photo-1501167786227-4cba60f6d58f?w=600&q=80'">
+                  <div
+                    class="absolute inset-0 bg-gradient-to-t from-navy/80 to-transparent flex flex-col justify-end p-5">
+                    <p class="text-white font-display text-lg font-semibold" x-text="$t(slide.titleKey)"></p>
+                    <p class="text-white/65 text-sm mt-1" x-text="$t(slide.subtitleKey)"></p>
+                  </div>
+                </div>
+              </template>
+              <div class="absolute bottom-4 right-4 flex gap-1.5 z-10">
+                <template x-for="(s, i) in slides" :key="i">
+                  <button @click="goTo(i)" :class="current===i ? 'bg-gold w-4' : 'bg-white/40 w-2'"
+                    class="h-2 rounded-full transition-all duration-300"></button>
+                </template>
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-px bg-white/8">
+              <div class="bg-white/6 p-4 text-center">
+                <div class="font-display text-2xl font-semibold text-gold">5 200<span class="text-lg">+</span></div>
+                <div class="text-white/55 text-xs mt-1" x-text="$t('stats.clients')"></div>
+              </div>
+              <div class="bg-white/6 p-4 text-center">
+                <div class="font-display text-2xl font-semibold text-gold">€420<span class="text-lg">M</span></div>
+                <div class="text-white/55 text-xs mt-1" x-text="$t('stats.financed')"></div>
+              </div>
+              <div class="bg-white/6 p-4 text-center">
+                <div class="font-display text-2xl font-semibold text-gold">48<span class="text-lg">h</span></div>
+                <div class="text-white/55 text-xs mt-1" x-text="$t('stats.delay')"></div>
+              </div>
+              <div class="bg-white/6 p-4 text-center">
+                <div class="font-display text-2xl font-semibold text-gold">98<span class="text-lg">%</span></div>
+                <div class="text-white/55 text-xs mt-1" x-text="$t('stats.satisfaction')"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== TRUST BAR ===== -->
+  <section class="section-alt bg-white dark:bg-gray-900 py-5 border-b border-gray-100 dark:border-gray-800">
+    <div class="max-w-7xl mx-auto px-5">
+      <div class="flex flex-wrap items-center justify-center gap-4 md:gap-8">
+        <div class="trust-badge-item"><i class="bi bi-bank2 text-navy dark:text-gold text-lg"></i><span
+            class="text-sm text-gray-600 dark:text-gray-300 font-medium" x-text="$t('trust.bank')"></span></div>
+        <div class="trust-badge-item"><i class="bi bi-shield-lock-fill text-navy dark:text-gold text-lg"></i><span
+            class="text-sm text-gray-600 dark:text-gray-300 font-medium" x-text="$t('trust.ssl')"></span></div>
+        <div class="trust-badge-item"><i class="bi bi-award-fill text-navy dark:text-gold text-lg"></i><span
+            class="text-sm text-gray-600 dark:text-gray-300 font-medium" x-text="$t('trust.eu')"></span></div>
+        <div class="trust-badge-item"><i class="bi bi-globe2 text-navy dark:text-gold text-lg"></i><span
+            class="text-sm text-gray-600 dark:text-gray-300 font-medium" x-text="$t('trust.countries')"></span></div>
+        <div class="trust-badge-item"><i class="bi bi-telephone-fill text-navy dark:text-gold text-lg"></i><span
+            class="text-sm text-gray-600 dark:text-gray-300 font-medium" x-text="$t('trust.support')"></span></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== OFFERS ===== -->
+  <section id="offers" class="section-light bg-gray-50 dark:bg-gray-950 py-20">
+    <div class="max-w-7xl mx-auto px-5">
+      <div class="text-center mb-14">
+        <div class="section-eyebrow" x-text="$t('offers.eyebrow')"></div>
+        <h2 class="section-title-main mb-4" x-text="$t('offers.title')"></h2>
+        <div class="divider-gold mx-auto"></div>
+        <p class="text-gray-500 dark:text-gray-400 mt-4 max-w-xl mx-auto text-[15px]" x-text="$t('offers.subtitle')">
+        </p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="card-surface p-6 flex flex-col">
+          <div class="about-icon bg-blue-50 dark:bg-blue-900/20 mb-4"><i
+              class="bi bi-person-fill text-blue-600 dark:text-blue-400 text-2xl"></i></div>
+          <div class="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-1"
+            x-text="$t('offers.personal.label')"></div>
+          <h3 class="text-[17px] font-semibold text-navy dark:text-white mb-1" x-text="$t('offers.personal.title')">
+          </h3>
+          <div class="offer-rate my-2">2,9%<span class="text-base font-normal text-gray-400 ml-1"
+              x-text="$t('offers.per_year')"></span></div>
+          <p class="text-gray-500 dark:text-gray-400 text-sm flex-1 mb-4 leading-relaxed"
+            x-text="$t('offers.personal.desc')"></p>
+          <ul class="space-y-2 mb-6 text-sm text-gray-600 dark:text-gray-300">
+            <li class="flex items-center gap-2"><i class="bi bi-check-circle-fill text-green-500 text-xs"></i><span
+                x-text="$t('offers.personal.f1')"></span></li>
+            <li class="flex items-center gap-2"><i class="bi bi-check-circle-fill text-green-500 text-xs"></i><span
+                x-text="$t('offers.personal.f2')"></span></li>
+            <li class="flex items-center gap-2"><i class="bi bi-check-circle-fill text-green-500 text-xs"></i><span
+                x-text="$t('offers.personal.f3')"></span></li>
+          </ul>
+          <a href="#form"
+            class="block text-center bg-navy dark:bg-blue-900 text-gold py-3 px-5 rounded-xl font-semibold text-sm hover:opacity-90 transition no-underline"
+            x-text="$t('common.apply')"></a>
+        </div>
+
+        <div class="card-surface offer-featured p-6 flex flex-col relative">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2">
+            <span class="bg-gold text-navy text-[11px] font-bold px-4 py-1.5 rounded-full"
+              x-text="$t('offers.popular')"></span>
+          </div>
+          <div class="about-icon bg-amber-50 dark:bg-amber-900/20 mb-4"><i
+              class="bi bi-house-heart-fill text-amber-600 dark:text-amber-400 text-2xl"></i></div>
+          <div class="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-1"
+            x-text="$t('offers.immobilier.label')"></div>
+          <h3 class="text-[17px] font-semibold text-navy dark:text-white mb-1" x-text="$t('offers.immobilier.title')">
+          </h3>
+          <div class="offer-rate my-2">1,8%<span class="text-base font-normal text-gray-400 ml-1"
+              x-text="$t('offers.per_year')"></span></div>
+          <p class="text-gray-500 dark:text-gray-400 text-sm flex-1 mb-4 leading-relaxed"
+            x-text="$t('offers.immobilier.desc')"></p>
+          <ul class="space-y-2 mb-6 text-sm text-gray-600 dark:text-gray-300">
+            <li class="flex items-center gap-2"><i class="bi bi-check-circle-fill text-green-500 text-xs"></i><span
+                x-text="$t('offers.immobilier.f1')"></span></li>
+            <li class="flex items-center gap-2"><i class="bi bi-check-circle-fill text-green-500 text-xs"></i><span
+                x-text="$t('offers.immobilier.f2')"></span></li>
+            <li class="flex items-center gap-2"><i class="bi bi-check-circle-fill text-green-500 text-xs"></i><span
+                x-text="$t('offers.immobilier.f3')"></span></li>
+          </ul>
+          <a href="#form"
+            class="block text-center bg-gold text-navy py-3 px-5 rounded-xl font-bold text-sm hover:opacity-90 transition no-underline"
+            x-text="$t('common.apply')"></a>
+        </div>
+
+        <div class="card-surface p-6 flex flex-col">
+          <div class="about-icon bg-teal-50 dark:bg-teal-900/20 mb-4"><i
+              class="bi bi-car-front-fill text-teal-600 dark:text-teal-400 text-2xl"></i></div>
+          <div class="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-1"
+            x-text="$t('offers.auto.label')"></div>
+          <h3 class="text-[17px] font-semibold text-navy dark:text-white mb-1" x-text="$t('offers.auto.title')"></h3>
+          <div class="offer-rate my-2">3,5%<span class="text-base font-normal text-gray-400 ml-1"
+              x-text="$t('offers.per_year')"></span></div>
+          <p class="text-gray-500 dark:text-gray-400 text-sm flex-1 mb-4 leading-relaxed"
+            x-text="$t('offers.auto.desc')"></p>
+          <ul class="space-y-2 mb-6 text-sm text-gray-600 dark:text-gray-300">
+            <li class="flex items-center gap-2"><i class="bi bi-check-circle-fill text-green-500 text-xs"></i><span
+                x-text="$t('offers.auto.f1')"></span></li>
+            <li class="flex items-center gap-2"><i class="bi bi-check-circle-fill text-green-500 text-xs"></i><span
+                x-text="$t('offers.auto.f2')"></span></li>
+            <li class="flex items-center gap-2"><i class="bi bi-check-circle-fill text-green-500 text-xs"></i><span
+                x-text="$t('offers.auto.f3')"></span></li>
+          </ul>
+          <a href="#form"
+            class="block text-center bg-navy dark:bg-blue-900 text-gold py-3 px-5 rounded-xl font-semibold text-sm hover:opacity-90 transition no-underline"
+            x-text="$t('common.apply')"></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== PROCESS ===== -->
+  <section id="process" class="section-alt bg-white dark:bg-gray-900 py-20">
+    <div class="max-w-7xl mx-auto px-5">
+      <div class="text-center mb-14">
+        <div class="section-eyebrow" x-text="$t('procedure.eyebrow')"></div>
+        <h2 class="section-title-main mb-4" x-text="$t('procedure.title')"></h2>
+        <div class="divider-gold mx-auto"></div>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6 relative">
+        <div class="hidden md:block absolute top-[22px] left-[calc(16.66%+22px)] right-[calc(16.66%+22px)] h-px"
+          style="background:linear-gradient(90deg,#FAC775 0%,rgba(250,199,117,0.3) 50%,#FAC775 100%)"></div>
+        <div class="card-surface step-card p-7">
+          <div class="step-number mb-5">1</div>
+          <h3 class="text-[16px] font-semibold text-navy dark:text-white mb-2" x-text="$t('procedure.step1.title')">
+          </h3>
+          <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed" x-text="$t('procedure.step1.desc')"></p>
+          <div class="mt-4 text-xs font-medium flex items-center gap-1"><i class="bi bi-clock text-amber-500"></i><span
+              class="text-amber-700 dark:text-amber-400" x-text="$t('procedure.step1.time')"></span></div>
+        </div>
+        <div class="card-surface step-card p-7">
+          <div class="step-number mb-5">2</div>
+          <h3 class="text-[16px] font-semibold text-navy dark:text-white mb-2" x-text="$t('procedure.step2.title')">
+          </h3>
+          <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed" x-text="$t('procedure.step2.desc')"></p>
+          <div class="mt-4 text-xs font-medium flex items-center gap-1"><i class="bi bi-clock text-amber-500"></i><span
+              class="text-amber-700 dark:text-amber-400" x-text="$t('procedure.step2.time')"></span></div>
+        </div>
+        <div class="card-surface step-card p-7">
+          <div class="step-number mb-5">3</div>
+          <h3 class="text-[16px] font-semibold text-navy dark:text-white mb-2" x-text="$t('procedure.step3.title')">
+          </h3>
+          <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed" x-text="$t('procedure.step3.desc')"></p>
+          <div class="mt-4 text-xs font-medium flex items-center gap-1"><i class="bi bi-clock text-amber-500"></i><span
+              class="text-amber-700 dark:text-amber-400" x-text="$t('procedure.step3.time')"></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== ABOUT + TESTIMONIALS ===== -->
+  <section id="about" class="section-light bg-gray-50 dark:bg-gray-950 py-20" x-data="aboutSection()">
+    <div class="max-w-7xl mx-auto px-5">
+      <div class="text-center mb-14">
+        <div class="section-eyebrow" x-text="$t('about.eyebrow')"></div>
+        <h2 class="section-title-main mb-4" x-text="$t('about.title')"></h2>
+        <div class="divider-gold mx-auto"></div>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6 mb-16">
+        <div class="card-surface p-7 text-center">
+          <div class="about-icon bg-blue-50 dark:bg-blue-900/20 mx-auto mb-4"><i
+              class="bi bi-eye-fill text-blue-600 text-2xl"></i></div>
+          <h3 class="text-[16px] font-semibold text-navy dark:text-white mb-2" x-text="$t('about.transparency.title')">
+          </h3>
+          <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed" x-text="$t('about.transparency.desc')">
+          </p>
+        </div>
+        <div class="card-surface p-7 text-center">
+          <div class="about-icon bg-amber-50 dark:bg-amber-900/20 mx-auto mb-4"><i
+              class="bi bi-people-fill text-amber-600 text-2xl"></i></div>
+          <h3 class="text-[16px] font-semibold text-navy dark:text-white mb-2" x-text="$t('about.expertise.title')">
+          </h3>
+          <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed" x-text="$t('about.expertise.desc')"></p>
+        </div>
+        <div class="card-surface p-7 text-center">
+          <div class="about-icon bg-teal-50 dark:bg-teal-900/20 mx-auto mb-4"><i
+              class="bi bi-chat-heart-fill text-teal-600 text-2xl"></i></div>
+          <h3 class="text-[16px] font-semibold text-navy dark:text-white mb-2"
+            x-text="$t('about.accompagnement.title')"></h3>
+          <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed" x-text="$t('about.accompagnement.desc')">
+          </p>
+        </div>
+      </div>
+
+      <div class="text-center mb-8">
+        <h3 class="section-title-main text-2xl" x-text="$t('about.testimonials.title')"></h3>
+      </div>
+      <div class="max-w-3xl mx-auto relative">
+        <template x-for="(t, i) in testimonials" :key="i">
+          <div x-show="current === i" x-transition:enter="transition ease-out duration-500"
+            x-transition:enter-start="opacity-0 translate-x-6" x-transition:enter-end="opacity-100 translate-x-0"
+            x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0" class="card-surface p-7 md:p-8">
+            <div class="flex items-start gap-5">
+              <img :src="t.img" alt="" class="w-14 h-14 rounded-full object-cover ring-2 ring-gold/30 flex-shrink-0"
+                :onerror="`this.src='https://ui-avatars.com/api/?name='+encodeURIComponent('${t.name}')+'&background=042C53&color=FAC775'`">
+              <div class="flex-1">
+                <div class="stars mb-2">★★★★★</div>
+                <p class="text-gray-600 dark:text-gray-300 text-[15px] leading-relaxed italic mb-4" x-text="t.text"></p>
+                <div>
+                  <div class="font-semibold text-navy dark:text-white text-sm" x-text="t.name"></div>
+                  <div class="text-gray-400 text-xs flex items-center gap-1 mt-0.5">
+                    <i class="bi bi-geo-alt-fill text-gold-dark"></i>
+                    <span x-text="t.location"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </template>
+        <div class="flex justify-center items-center gap-4 mt-6">
+          <button @click="prev"
+            class="w-9 h-9 rounded-full border border-gray-200 dark:border-gray-700 flex items-center justify-center hover:bg-navy hover:text-gold hover:border-navy transition text-gray-500"><i
+              class="bi bi-chevron-left text-sm"></i></button>
+          <div class="flex gap-2">
+            <template x-for="(t, i) in testimonials" :key="'d'+i">
+              <button @click="current=i" :class="current===i ? 'bg-navy w-5' : 'bg-gray-300 dark:bg-gray-600 w-2'"
+                class="h-2 rounded-full transition-all duration-300"></button>
+            </template>
+          </div>
+          <button @click="next"
+            class="w-9 h-9 rounded-full border border-gray-200 dark:border-gray-700 flex items-center justify-center hover:bg-navy hover:text-gold hover:border-navy transition text-gray-500"><i
+              class="bi bi-chevron-right text-sm"></i></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== FORM WIZARD ===== -->
+  <section id="form" class="section-alt bg-white dark:bg-gray-900 py-20" x-data="wizard()">
+    <div class="max-w-2xl mx-auto px-5">
+      <div class="text-center mb-12">
+        <div class="section-eyebrow" x-text="$t('form.eyebrow')"></div>
+        <h2 class="section-title-main mb-4" x-text="$t('form.title')"></h2>
+        <div class="divider-gold mx-auto"></div>
+        <p class="text-gray-500 dark:text-gray-400 mt-4 text-sm" x-text="$t('form.subtitle')"></p>
+      </div>
+
+      <div class="mb-8">
+        <div class="flex justify-between mb-3">
+          <template x-for="s in [1,2,3]" :key="s">
+            <div class="flex items-center gap-2" :class="s < 3 ? 'flex-1' : ''">
+              <div
+                class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-semibold transition-all duration-300 flex-shrink-0"
+                :class="step > s ? 'bg-green-500 text-white' : step === s ? 'bg-navy text-gold' : 'bg-gray-200 dark:bg-gray-700 text-gray-400'">
+                <i class="bi bi-check-lg" x-show="step > s"></i>
+                <span x-show="step <= s" x-text="s"></span>
+              </div>
+              <div x-show="s < 3" class="h-px flex-1 mx-2 transition-all duration-300"
+                :class="step > s ? 'bg-navy' : 'bg-gray-200 dark:bg-gray-700'"></div>
+            </div>
+          </template>
+        </div>
+        <div class="flex justify-between text-xs text-gray-400 px-1">
+          <span :class="step >= 1 ? 'text-navy dark:text-gold font-medium' : ''"
+            x-text="$t('form.progress.step1')"></span>
+          <span :class="step >= 2 ? 'text-navy dark:text-gold font-medium' : ''"
+            x-text="$t('form.progress.step2')"></span>
+          <span :class="step >= 3 ? 'text-navy dark:text-gold font-medium' : ''"
+            x-text="$t('form.progress.step3')"></span>
+        </div>
+      </div>
+
+      <!-- Step 1 -->
+      <div x-show="step === 1" x-transition:enter="transition ease-out duration-300"
+        x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0">
+        <div class="card-surface p-7 space-y-4">
+          <h3 class="font-semibold text-navy dark:text-white mb-2" x-text="$t('form.step1_title')"></h3>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="text-xs text-gray-500 mb-1 block" x-text="$t('form.fields.nom')"></label>
+              <input type="text" x-model="form.nom" class="input-field" :placeholder="$t('form.fields.nom')">
+            </div>
+            <div>
+              <label class="text-xs text-gray-500 mb-1 block" x-text="$t('form.fields.prenom')"></label>
+              <input type="text" x-model="form.prenom" class="input-field" :placeholder="$t('form.fields.prenom')">
+            </div>
+          </div>
+          <div>
+            <label class="text-xs text-gray-500 mb-1 block" x-text="$t('form.fields.email')"></label>
+            <input type="email" x-model="form.email" class="input-field" :placeholder="$t('form.fields.email')">
+          </div>
+          <div>
+            <label class="text-xs text-gray-500 mb-1 block" x-text="$t('form.fields.pays.label')"></label>
+            <select x-model="form.pays" class="input-field" @change="updateWhatsAppPlaceholder">
+              <option value="" disabled x-text="$t('form.fields.pays.placeholder')"></option>
+              <option value="DE" x-text="$t('form.fields.pays.de')"></option>
+              <option value="PT" x-text="$t('form.fields.pays.pt')"></option>
+              <option value="GR" x-text="$t('form.fields.pays.gr')"></option>
+              <option value="AT" x-text="$t('form.fields.pays.at')"></option>
+              <option value="IT" x-text="$t('form.fields.pays.it')"></option>
+              <option value="CH" x-text="$t('form.fields.pays.ch')"></option>
+            </select>
+          </div>
+          <button @click="nextStep" class="submit-btn mt-2" x-text="$t('form.buttons.continuer') + ' →'"></button>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div x-show="step === 2" x-transition:enter="transition ease-out duration-300"
+        x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0">
+        <div class="card-surface p-7 space-y-4">
+          <h3 class="font-semibold text-navy dark:text-white mb-2" x-text="$t('form.step2_title')"></h3>
+          <div>
+            <label class="text-xs text-gray-500 mb-1 block" x-text="$t('form.fields.type.placeholder')"></label>
+            <select x-model="form.type" class="input-field">
+              <option value="" disabled x-text="$t('form.fields.type.placeholder')"></option>
+              <option value="personal" x-text="$t('offers.personal.title')"></option>
+              <option value="immobilier" x-text="$t('offers.immobilier.title')"></option>
+              <option value="auto" x-text="$t('offers.auto.title')"></option>
+              <option value="professionnel" x-text="$t('form.fields.type.professionnel')"></option>
+              <option value="etudiant" x-text="$t('form.fields.type.etudiant')"></option>
+            </select>
+          </div>
+          <div>
+            <label class="text-xs text-gray-500 mb-1 block" x-text="$t('form.fields.montant')"></label>
+            <div class="relative">
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 font-medium">€</span>
+              <input type="number" x-model="form.montant" class="input-field !pl-8"
+                :placeholder="$t('form.fields.montant')">
+            </div>
+          </div>
+          <div class="flex gap-3 mt-2">
+            <button @click="prevStep"
+              class="flex-1 py-3 rounded-xl border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 font-medium text-sm hover:bg-gray-50 dark:hover:bg-gray-800 transition"
+              x-text="'← ' + $t('form.buttons.retour')"></button>
+            <button @click="nextStep" class="submit-btn flex-1 !w-auto"
+              x-text="$t('form.buttons.continuer') + ' →'"></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div x-show="step === 3" x-transition:enter="transition ease-out duration-300"
+        x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0">
+        <div class="card-surface p-7 space-y-4">
+          <h3 class="font-semibold text-navy dark:text-white mb-2" x-text="$t('form.step3_title')"></h3>
+          <div>
+            <label class="text-xs text-gray-500 mb-1 block" x-text="$t('form.fields.adresse')"></label>
+            <div class="relative">
+              <i class="bi bi-whatsapp absolute left-4 top-1/2 -translate-y-1/2 text-green-500"></i>
+              <input type="text" x-model="form.adresse" class="input-field !pl-10" :placeholder="whatsappPlaceholder">
+            </div>
+          </div>
+          <div>
+            <label class="text-xs text-gray-500 mb-1 block" x-text="$t('form.fields.codepostal')"></label>
+            <input type="text" x-model="form.codepostal" class="input-field"
+              :placeholder="$t('form.fields.codepostal')">
+          </div>
+          <div class="flex items-center gap-2 bg-gray-50 dark:bg-gray-800 rounded-xl p-3">
+            <i class="bi bi-shield-check-fill text-green-500"></i>
+            <p class="text-xs text-gray-500 dark:text-gray-400" x-text="$t('form.security_note')"></p>
+          </div>
+          <div class="flex gap-3 mt-2">
+            <button @click="prevStep"
+              class="flex-1 py-3 rounded-xl border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 font-medium text-sm hover:bg-gray-50 dark:hover:bg-gray-800 transition"
+              x-text="'← ' + $t('form.buttons.retour')"></button>
+            <button @click="submitForm" class="submit-btn flex-1 !w-auto flex items-center justify-center gap-2"
+              :disabled="loading" :class="loading ? 'opacity-60 cursor-not-allowed' : ''">
+              <i class="bi bi-arrow-clockwise animate-spin" x-show="loading"></i>
+              <span x-show="!loading" x-text="$t('form.buttons.submit')"></span>
+              <span x-show="loading" x-text="$t('form.sending')"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer-bg text-gray-300 pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-5">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+        <div class="md:col-span-1">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center border border-gold/20"
+              style="background:#0C447C;display:flex;align-items:center;justify-content:center">
+              <img src="assets/logo.png" alt="Zorex Finance Logo" class="w-full h-full object-cover">
+
+            </div>
+            <span class="text-white font-semibold text-[17px]" style="font-family:'Playfair Display',serif">Zorex
+              Finance</span>
+          </div>
+          <p class="text-gray-400 text-sm leading-relaxed mb-5" x-text="$t('footer.description')"></p>
+          <!-- Serial number -->
+          <div class="mb-4 text-xs font-mono text-gray-600 border border-gray-700 rounded-lg px-3 py-2 inline-block">
+            <span class="text-gray-500">Reg.-Nr.:</span> <span class="text-gold/70">ZRX-FIN-2024-EU-004817</span>
+          </div>
+          <div class="flex gap-3 mt-3">
+            <a href="#"
+              class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-gold hover:border-gold/30 transition"><i
+                class="bi bi-facebook"></i></a>
+            <a href="#"
+              class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-gold hover:border-gold/30 transition"><i
+                class="bi bi-linkedin"></i></a>
+            <a href="#"
+              class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-gold hover:border-gold/30 transition"><i
+                class="bi bi-instagram"></i></a>
+            <a href="#"
+              class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-gold hover:border-gold/30 transition"><i
+                class="bi bi-twitter-x"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold text-sm uppercase tracking-wider mb-5" x-text="$t('footer.quick_links')">
+          </h4>
+          <ul class="space-y-3 text-sm footer-link-col">
+            <li><a href="#home" class="footer-link text-gray-400 hover:text-gold transition"
+                x-text="$t('nav.home')"></a></li>
+            <li><a href="#offers" class="footer-link text-gray-400 hover:text-gold transition"
+                x-text="$t('nav.offres')"></a></li>
+            <li><a href="#process" class="footer-link text-gray-400 hover:text-gold transition"
+                x-text="$t('nav.procedure')"></a></li>
+            <li><a href="#about" class="footer-link text-gray-400 hover:text-gold transition"
+                x-text="$t('nav.apropos')"></a></li>
+            <li><a href="#form" class="footer-link text-gray-400 hover:text-gold transition"
+                x-text="$t('nav.demande')"></a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold text-sm uppercase tracking-wider mb-5" x-text="$t('footer.our_offers')">
+          </h4>
+          <ul class="space-y-3 text-sm">
+            <li><a href="#form" class="footer-link text-gray-400 hover:text-gold transition"
+                x-text="$t('offers.personal.title')"></a></li>
+            <li><a href="#form" class="footer-link text-gray-400 hover:text-gold transition"
+                x-text="$t('offers.immobilier.title')"></a></li>
+            <li><a href="#form" class="footer-link text-gray-400 hover:text-gold transition"
+                x-text="$t('offers.auto.title')"></a></li>
+            <li><a href="#form" class="footer-link text-gray-400 hover:text-gold transition"
+                x-text="$t('form.fields.type.professionnel')"></a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold text-sm uppercase tracking-wider mb-5" x-text="$t('footer.contact')"></h4>
+          <ul class="space-y-4 text-sm">
+            <li class="flex items-start gap-3">
+              <i class="bi bi-envelope-fill text-gold mt-0.5 flex-shrink-0"></i>
+              <a href="mailto:contact@zorex-finance.lat"
+                class="text-gray-400 hover:text-gold transition break-all">contact@zorex-finance.lat</a>
+            </li>
+            <li class="flex items-start gap-3">
+              <i class="bi bi-telephone-fill text-gold mt-0.5 flex-shrink-0"></i>
+              <a href="tel:+491771320599" class="text-gray-400 hover:text-gold transition">+49 177 1320599</a>
+            </li>
+            <li class="flex items-start gap-3">
+              <i class="bi bi-geo-alt-fill text-gold mt-0.5 flex-shrink-0"></i>
+              <span class="text-gray-400">12 Finanzstraße,<br>Berlin, Deutschland</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i class="bi bi-flag-fill text-gold mt-0.5 flex-shrink-0"></i>
+              <span class="text-gray-400">🇩🇪 🇵🇹 🇬🇷 🇦🇹 🇮🇹 🇨🇭</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div
+        class="border-t border-white/10 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+        <div class="flex flex-col md:flex-row items-center gap-3">
+          <span x-text="$t('footer.copyright', {year: new Date().getFullYear()})"></span>
+          <span class="hidden md:inline text-gray-700">·</span>
+          <span class="font-mono text-gray-600">ZRX-FIN-2024-EU-004817</span>
+        </div>
+        <div class="flex gap-6">
+          <a href="#" class="hover:text-gold transition" x-text="$t('footer.privacy')"></a>
+          <a href="#" class="hover:text-gold transition" x-text="$t('footer.terms')"></a>
+          <a href="#" class="hover:text-gold transition" x-text="$t('footer.legal')"></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp -->
+  <a href="https://wa.me/491771320599" target="_blank"
+    class="wa-btn fixed bottom-6 right-6 w-14 h-14 bg-green-500 hover:bg-green-600 text-white rounded-full flex items-center justify-center shadow-xl z-50 transition"
+    title="WhatsApp">
+    <i class="bi bi-whatsapp text-2xl"></i>
+  </a>
+
+
+  <!-- ===== SCRIPTS ===== -->
+  <script>
+    // ===== TRANSLATIONS =====
+    const TRANSLATIONS = {
+      de: {
+        title: "Zorex Finance | Finanzlösungen in Europa",
+        brand: "Zorex Finance", brand_tagline: "Finanzlösungen · DE · PT · GR · AT · IT · CH",
+        nav: { home: "Startseite", offres: "Angebote", procedure: "Ablauf", apropos: "Über uns", demande: "Kredit beantragen" },
+        hero: {
+          tag: "Geprüft · Zertifiziert · Sicher",
+          title: "Schnelle Finanzierungen zur <span class='accent'>Verwirklichung Ihrer Projekte</span>",
+          subtitle: "Privat- und Geschäftskunden in Deutschland, Portugal, Griechenland, Österreich, Italien und der Schweiz — wir verhandeln die besten Konditionen für Sie.",
+          cta_primary: "Kredit simulieren →",
+          cta_secondary: "Angebote entdecken",
+          trust1: "Unverbindlich", trust2: "Ab 2,9% p.a.", trust3: "Antwort in 48h",
+          slide1_title: "Schnelle Privatkredite", slide1_subtitle: "Bis 50.000 € · Entscheidung in 48h",
+          slide2_title: "Immobilienfinanzierung", slide2_subtitle: "Beste Zinsen · Dedizierte Experten",
+          slide3_title: "Autofinanzierung", slide3_subtitle: "Neu und gebraucht · Expressantwort"
+        },
+        stats: { clients: "Zufriedene Kunden", financed: "Vergebene Finanzierungen", delay: "Antwortzeit", satisfaction: "Kundenzufriedenheit" },
+        trust: { bank: "Zertifizierter Bankpartner", ssl: "SSL-verschlüsselte Daten", eu: "EU-konform", countries: "DE · PT · GR · AT · IT · CH abgedeckt", support: "Support 7 Tage/Woche" },
+        offers: {
+          eyebrow: "Unsere Produkte", title: "Maßgeschneiderte Finanzierungslösungen", subtitle: "Wettbewerbsfähige Angebote für all Ihre Projekte zu den besten Marktzinsen.",
+          popular: "⭐ Am beliebtesten", per_year: "/ Jahr",
+          personal: { label: "Privatperson", title: "Privatkredit", desc: "Für Projekte, Reisen oder unerwartete Ausgaben. Schnell und flexibel.", f1: "Bis zu 50.000 €", f2: "Flexible Rückzahlung", f3: "Entscheidung in 48h" },
+          immobilier: { label: "Immobilien", title: "Immobilienkredit", desc: "Kauf oder Renovierung Ihrer Immobilie. Expertenbegleitung auf jedem Schritt.", f1: "Bis zu 500.000 €", f2: "Laufzeit bis 30 Jahre", f3: "Bester Zinssatz garantiert" },
+          auto: { label: "Automobil", title: "Autokredit", desc: "Finanzierung für Ihr Neu- oder Gebrauchtfahrzeug mit Expressbearbeitung.", f1: "Neu und gebraucht", f2: "Ohne Anzahlung möglich", f3: "Antwort in 24h" }
+        },
+        procedure: {
+          eyebrow: "So funktioniert es", title: "Ihr Kredit in 3 einfachen Schritten",
+          step1: { title: "Formular ausfüllen", desc: "2 Minuten reichen. Unser intelligentes Formular passt sich Ihrer Situation an.", time: "~2 Minuten" },
+          step2: { title: "Prüfung des Antrags", desc: "Unsere Experten prüfen Ihren Antrag und kontaktieren Sie zur Präzisierung der Konditionen.", time: "Innerhalb von 48h" },
+          step3: { title: "Geldüberweisung", desc: "Nach Abschluss und Unterzeichnung des Vertrags wird das Geld direkt auf Ihr Konto überwiesen.", time: "1 bis 5 Tage" }
+        },
+        about: {
+          eyebrow: "Unsere Mission", title: "Ihr vertrauenswürdiger Finanzpartner",
+          transparency: { title: "Vollständige Transparenz", desc: "Keine versteckten Kosten. Jeder Schritt wird klar dokumentiert und erklärt, bevor Sie sich verpflichten." },
+          expertise: { title: "Regionale Expertise", desc: "Spezialisten für die Finanzmärkte in Deutschland, Portugal, Griechenland, Österreich, Italien und der Schweiz seit über 10 Jahren." },
+          accompagnement: { title: "Persönliche Betreuung", desc: "Ein dedizierter Berater begleitet Sie vom Antrag bis zur Auszahlung." },
+          testimonials: { title: "Was unsere Kunden sagen" }
+        },
+        form: {
+          eyebrow: "Online-Antrag", title: "Ihr Finanzierungsantrag", subtitle: "Füllen Sie dieses sichere Formular aus. Ein Berater meldet sich innerhalb von 48 Stunden.",
+          progress: { step1: "Identität", step2: "Projekt", step3: "Kontakt" },
+          step1_title: "Ihre persönlichen Daten", step2_title: "Ihr Finanzierungsprojekt", step3_title: "Ihre Kontaktdaten",
+          fields: {
+            nom: "Nachname", prenom: "Vorname", email: "E-Mail-Adresse",
+            pays: { 
+              label: "Wohnsitzland",
+              placeholder: "Land auswählen",
+              de: "🇩🇪 Deutschland (+49)",
+              pt: "🇵🇹 Portugal (+351)",
+              gr: "🇬🇷 Griechenland (+30)",
+              at: "🇦🇹 Österreich (+43)",
+              it: "🇮🇹 Italien (+39)",
+              ch: "🇨🇭 Schweiz (+41)"
+            },
+            type: { placeholder: "Gewünschte Kreditart", professionnel: "Geschäftskredit", etudiant: "Studienkredit" },
+            montant: "Gewünschter Betrag (€)",
+            adresse: "WhatsApp-Nummer", 
+            adresse_placeholder: "+49 XXX XXXXXXX",
+            codepostal: "Postleitzahl"
+          },
+          buttons: { continuer: "Weiter", retour: "Zurück", submit: "Antrag senden" },
+          security_note: "Ihre Daten sind verschlüsselt und gemäß DSGVO geschützt.",
+          sending: "Wird gesendet..."
+        },
+        common: { apply: "Beantragen" },
+        footer: {
+          description: "Zuverlässige Finanzlösungen für Privat- und Geschäftskunden in Deutschland, Portugal, Griechenland, Österreich, Italien und der Schweiz.",
+          quick_links: "Navigation", our_offers: "Unsere Angebote", contact: "Kontakt",
+          privacy: "Datenschutz", terms: "AGB", legal: "Impressum",
+          copyright: "© {year} Zorex Finance. Alle Rechte vorbehalten."
+        }
+      },
+
+      pt: {
+        title: "Zorex Finance | Soluções Financeiras na Europa",
+        brand: "Zorex Finance", brand_tagline: "Soluções financeiras · DE · PT · GR · AT · IT · CH",
+        nav: { home: "Início", offres: "Ofertas", procedure: "Processo", apropos: "Sobre nós", demande: "Pedir empréstimo" },
+        hero: {
+          tag: "Aprovado · Certificado · Seguro",
+          title: "Financiamentos rápidos para <span class='accent'>concretizar os seus projetos</span>",
+          subtitle: "Particulares e empresas na Alemanha, Portugal, Grécia, Áustria, Itália e Suíça — negociamos as melhores condições para si.",
+          cta_primary: "Simular o meu empréstimo →",
+          cta_secondary: "Descobrir as ofertas",
+          trust1: "Sem compromisso", trust2: "Taxa a partir de 2,9%", trust3: "Resposta em 48h",
+          slide1_title: "Empréstimos pessoais rápidos", slide1_subtitle: "Até 50.000 € · Decisão em 48h",
+          slide2_title: "Financiamento imobiliário", slide2_subtitle: "Melhores taxas · Especialistas dedicados",
+          slide3_title: "Crédito automóvel", slide3_subtitle: "Novo e usado · Resposta expressa"
+        },
+        stats: { clients: "Clientes satisfeitos", financed: "Financiamentos concedidos", delay: "Prazo de resposta", satisfaction: "Satisfação do cliente" },
+        trust: { bank: "Parceiro bancário certificado", ssl: "Dados encriptados SSL", eu: "Conforme regulamento UE", countries: "DE · PT · GR · AT · IT · CH cobertos", support: "Suporte 7 dias/semana" },
+        offers: {
+          eyebrow: "Os nossos produtos", title: "Soluções de financiamento adaptadas", subtitle: "Ofertas competitivas para todos os seus projetos, com as melhores taxas do mercado.",
+          popular: "⭐ O mais popular", per_year: "/ ano",
+          personal: { label: "Particular", title: "Empréstimo Pessoal", desc: "Para os seus projetos, viagens ou despesas imprevistas. Rapidez e flexibilidade.", f1: "Até 50.000 €", f2: "Reembolso flexível", f3: "Decisão em 48h" },
+          immobilier: { label: "Imobiliário", title: "Empréstimo Imobiliário", desc: "Compra ou renovação do seu imóvel. Acompanhamento especializado.", f1: "Até 500.000 €", f2: "Prazo até 30 anos", f3: "Melhor taxa garantida" },
+          auto: { label: "Automóvel", title: "Crédito Auto", desc: "Financiamento para o seu veículo novo ou usado, com aprovação expressa.", f1: "Novo e usado", f2: "Sem entrada possível", f3: "Resposta em 24h" }
+        },
+        procedure: {
+          eyebrow: "Como funciona", title: "O seu empréstimo em 3 passos simples",
+          step1: { title: "Preencher o formulário", desc: "2 minutos bastam. O nosso formulário inteligente adapta-se à sua situação.", time: "~2 minutos" },
+          step2: { title: "Análise do pedido", desc: "Os nossos especialistas analisam o pedido e contactam-no para afinar as condições.", time: "Em 48h" },
+          step3: { title: "Transferência dos fundos", desc: "Após validação final e assinatura do contrato, os fundos são transferidos para a sua conta.", time: "1 a 5 dias" }
+        },
+        about: {
+          eyebrow: "A nossa missão", title: "O seu parceiro financeiro de confiança",
+          transparency: { title: "Total transparência", desc: "Sem taxas ocultas. Cada etapa é claramente documentada antes de qualquer compromisso." },
+          expertise: { title: "Experiência regional", desc: "Especialistas nos mercados financeiros da Alemanha, Portugal, Grécia, Áustria, Itália e Suíça há mais de 10 anos." },
+          accompagnement: { title: "Acompanhamento personalizado", desc: "Um consultor dedicado guia-o desde o pedido até ao desembolso dos fundos." },
+          testimonials: { title: "O que dizem os nossos clientes" }
+        },
+        form: {
+          eyebrow: "Pedido online", title: "O seu pedido de financiamento", subtitle: "Preencha este formulário seguro. Um consultor contacta-o em 48h.",
+          progress: { step1: "Identidade", step2: "Projeto", step3: "Contacto" },
+          step1_title: "Os seus dados pessoais", step2_title: "O seu projeto de financiamento", step3_title: "Os seus contactos",
+          fields: {
+            nom: "Apelido", prenom: "Nome próprio", email: "Endereço de e-mail",
+            pays: { 
+              label: "País de residência",
+              placeholder: "Selecionar país",
+              de: "🇩🇪 Alemanha (+49)",
+              pt: "🇵🇹 Portugal (+351)",
+              gr: "🇬🇷 Grécia (+30)",
+              at: "🇦🇹 Áustria (+43)",
+              it: "🇮🇹 Itália (+39)",
+              ch: "🇨🇭 Suíça (+41)"
+            },
+            type: { placeholder: "Tipo de empréstimo desejado", professionnel: "Empréstimo Empresarial", etudiant: "Empréstimo Estudantil" },
+            montant: "Montante desejado (€)",
+            adresse: "Número WhatsApp", 
+            adresse_placeholder: "+351 XXX XXXXXX",
+            codepostal: "Código postal"
+          },
+          buttons: { continuer: "Continuar", retour: "Voltar", submit: "Enviar pedido" },
+          security_note: "Os seus dados são encriptados e protegidos de acordo com o RGPD.",
+          sending: "A enviar..."
+        },
+        common: { apply: "Pedir" },
+        footer: {
+          description: "Soluções financeiras fiáveis para particulares e empresas na Alemanha, Portugal, Grécia, Áustria, Itália e Suíça.",
+          quick_links: "Navegação", our_offers: "As nossas ofertas", contact: "Contacto",
+          privacy: "Política de privacidade", terms: "Termos e condições", legal: "Aviso legal",
+          copyright: "© {year} Zorex Finance. Todos os direitos reservados."
+        }
+      },
+
+      el: {
+        title: "Zorex Finance | Χρηματοοικονομικές Λύσεις στην Ευρώπη",
+        brand: "Zorex Finance", brand_tagline: "Χρηματοδοτήσεις · DE · PT · GR · AT · IT · CH",
+        nav: { home: "Αρχική", offres: "Προσφορές", procedure: "Διαδικασία", apropos: "Σχετικά", demande: "Αίτηση δανείου" },
+        hero: {
+          tag: "Εγκεκριμένο · Πιστοποιημένο · Ασφαλές",
+          title: "Γρήγορες χρηματοδοτήσεις για <span class='accent'>την υλοποίηση των στόχων σας</span>",
+          subtitle: "Ιδιώτες και επιχειρήσεις στη Γερμανία, Πορτογαλία, Ελλάδα, Αυστρία, Ιταλία και Ελβετία — διαπραγματευόμαστε τους καλύτερους όρους για εσάς.",
+          cta_primary: "Προσομοίωση δανείου →",
+          cta_secondary: "Δείτε τις προσφορές",
+          trust1: "Χωρίς δέσμευση", trust2: "Επιτόκια από 2,9%", trust3: "Απάντηση σε 48h",
+          slide1_title: "Γρήγορα προσωπικά δάνεια", slide1_subtitle: "Έως 50.000 € · Απόφαση σε 48h",
+          slide2_title: "Στεγαστική χρηματοδότηση", slide2_subtitle: "Καλύτερα επιτόκια · Αφοσιωμένοι ειδικοί",
+          slide3_title: "Δάνειο αυτοκινήτου", slide3_subtitle: "Καινούριο και μεταχειρισμένο · Ταχεία απάντηση"
+        },
+        stats: { clients: "Ικανοποιημένοι πελάτες", financed: "Χορηγηθείσες χρηματοδοτήσεις", delay: "Χρόνος απόκρισης", satisfaction: "Ικανοποίηση πελατών" },
+        trust: { bank: "Πιστοποιημένος τραπεζικός εταίρος", ssl: "Κρυπτογραφημένα δεδομένα SSL", eu: "Συμμόρφωση ΕΕ", countries: "DE · PT · GR · AT · IT · CH καλύπτονται", support: "Υποστήριξη 7 ημέρες/εβδομάδα" },
+        offers: {
+          eyebrow: "Τα προϊόντα μας", title: "Προσαρμοσμένες λύσεις χρηματοδότησης", subtitle: "Ανταγωνιστικές προσφορές για όλα τα σχέδιά σας με τα καλύτερα επιτόκια.",
+          popular: "⭐ Πιο δημοφιλές", per_year: "/ έτος",
+          personal: { label: "Ιδιώτης", title: "Προσωπικό Δάνειο", desc: "Για τα σχέδιά σας, ταξίδια ή απρόβλεπτα έξοδα. Ταχύτητα και ευελιξία.", f1: "Έως 50.000 €", f2: "Ευέλικτη αποπληρωμή", f3: "Απόφαση σε 48h" },
+          immobilier: { label: "Ακίνητα", title: "Στεγαστικό Δάνειο", desc: "Αγορά ή ανακαίνιση ακινήτου. Εξειδικευμένη καθοδήγηση.", f1: "Έως 500.000 €", f2: "Διάρκεια έως 30 χρόνια", f3: "Καλύτερο επιτόκιο εγγυημένο" },
+          auto: { label: "Αυτοκίνητο", title: "Δάνειο Αυτοκινήτου", desc: "Χρηματοδότηση για καινούριο ή μεταχειρισμένο αυτοκίνητο.", f1: "Καινούριο και μεταχειρισμένο", f2: "Χωρίς προκαταβολή", f3: "Απάντηση σε 24h" }
+        },
+        procedure: {
+          eyebrow: "Πώς λειτουργεί", title: "Το δάνειό σας σε 3 απλά βήματα",
+          step1: { title: "Συμπλήρωση φόρμας", desc: "2 λεπτά αρκούν. Η έξυπνη φόρμα μας προσαρμόζεται στην κατάστασή σας.", time: "~2 λεπτά" },
+          step2: { title: "Αξιολόγηση αίτησης", desc: "Οι ειδικοί μας εξετάζουν την αίτησή σας και επικοινωνούν μαζί σας.", time: "Εντός 48h" },
+          step3: { title: "Μεταφορά κεφαλαίων", desc: "Μετά την τελική έγκριση, τα κεφάλαια μεταφέρονται κατευθείαν στον λογαριασμό σας.", time: "1 έως 5 ημέρες" }
+        },
+        about: {
+          eyebrow: "Η αποστολή μας", title: "Ο αξιόπιστος χρηματοοικονομικός σας εταίρος",
+          transparency: { title: "Πλήρης διαφάνεια", desc: "Χωρίς κρυφές χρεώσεις. Κάθε βήμα τεκμηριώνεται ξεκάθαρα." },
+          expertise: { title: "Περιφερειακή εμπειρία", desc: "Ειδικοί στις χρηματαγορές Γερμανίας, Πορτογαλίας, Ελλάδας, Αυστρίας, Ιταλίας και Ελβετίας για 10+ χρόνια." },
+          accompagnement: { title: "Εξατομικευμένη υποστήριξη", desc: "Αφοσιωμένος σύμβουλος σας καθοδηγεί από την αίτηση έως την εκταμίευση." },
+          testimonials: { title: "Τι λένε οι πελάτες μας" }
+        },
+        form: {
+          eyebrow: "Διαδικτυακή αίτηση", title: "Η αίτηση χρηματοδότησής σας", subtitle: "Συμπληρώστε αυτή την ασφαλή φόρμα. Σύμβουλος θα επικοινωνήσει εντός 48h.",
+          progress: { step1: "Ταυτότητα", step2: "Σχέδιο", step3: "Επαφή" },
+          step1_title: "Τα προσωπικά σας στοιχεία", step2_title: "Το σχέδιο χρηματοδότησής σας", step3_title: "Τα στοιχεία επικοινωνίας σας",
+          fields: {
+            nom: "Επώνυμο", prenom: "Όνομα", email: "Διεύθυνση e-mail",
+            pays: { 
+              label: "Χώρα κατοικίας",
+              placeholder: "Επιλογή χώρας",
+              de: "🇩🇪 Γερμανία (+49)",
+              pt: "🇵🇹 Πορτογαλία (+351)",
+              gr: "🇬🇷 Ελλάδα (+30)",
+              at: "🇦🇹 Αυστρία (+43)",
+              it: "🇮🇹 Ιταλία (+39)",
+              ch: "🇨🇭 Ελβετία (+41)"
+            },
+            type: { placeholder: "Τύπος δανείου", professionnel: "Επιχειρηματικό Δάνειο", etudiant: "Φοιτητικό Δάνειο" },
+            montant: "Επιθυμητό ποσό (€)",
+            adresse: "Αριθμός WhatsApp", 
+            adresse_placeholder: "+30 XXX XXXXXXX",
+            codepostal: "Ταχυδρομικός κώδικας"
+          },
+          buttons: { continuer: "Συνέχεια", retour: "Πίσω", submit: "Υποβολή αίτησης" },
+          security_note: "Τα δεδομένα σας είναι κρυπτογραφημένα και προστατεύονται σύμφωνα με τον ΓΚΠΔ.",
+          sending: "Αποστολή..."
+        },
+        common: { apply: "Αίτηση" },
+        footer: {
+          description: "Αξιόπιστες χρηματοοικονομικές λύσεις για ιδιώτες και επιχειρήσεις στη Γερμανία, Πορτογαλία, Ελλάδα, Αυστρία, Ιταλία και Ελβετία.",
+          quick_links: "Πλοήγηση", our_offers: "Οι προσφορές μας", contact: "Επικοινωνία",
+          privacy: "Πολιτική απορρήτου", terms: "Όροι & Προϋποθέσεις", legal: "Νομική σημείωση",
+          copyright: "© {year} Zorex Finance. Όλα τα δικαιώματα διατηρούνται."
+        }
+      },
+
+      en: {
+        title: "Zorex Finance | Financial Solutions in Europe",
+        brand: "Zorex Finance", brand_tagline: "Financial solutions · DE · PT · GR · AT · IT · CH",
+        nav: { home: "Home", offres: "Offers", procedure: "Process", apropos: "About", demande: "Apply for a loan" },
+        hero: {
+          tag: "Approved · Certified · Secure",
+          title: "Fast financing to <span class='accent'>bring your projects to life</span>",
+          subtitle: "Individuals and businesses in Germany, Portugal, Greece, Austria, Italy and Switzerland — we negotiate the best conditions for you.",
+          cta_primary: "Simulate my loan →",
+          cta_secondary: "Explore our offers",
+          trust1: "No commitment", trust2: "Rates from 2.9%", trust3: "Response in 48h",
+          slide1_title: "Fast personal loans", slide1_subtitle: "Up to €50,000 · Decision in 48h",
+          slide2_title: "Mortgage financing", slide2_subtitle: "Best rates · Dedicated experts",
+          slide3_title: "Car financing", slide3_subtitle: "New and used · Express response"
+        },
+        stats: { clients: "Satisfied clients", financed: "Financing granted", delay: "Response time", satisfaction: "Client satisfaction" },
+        trust: { bank: "Certified bank partner", ssl: "SSL encrypted data", eu: "EU compliant", countries: "DE · PT · GR · AT · IT · CH covered", support: "Support 7 days/week" },
+        offers: {
+          eyebrow: "Our products", title: "Tailored financing solutions", subtitle: "Competitive offers for all your projects at the best market rates.",
+          popular: "⭐ Most popular", per_year: "/ year",
+          personal: { label: "Individual", title: "Personal Loan", desc: "For projects, travel or unexpected expenses. Speed and flexibility.", f1: "Up to €50,000", f2: "Flexible repayment", f3: "Decision in 48h" },
+          immobilier: { label: "Real estate", title: "Mortgage Loan", desc: "Purchase or renovation of your property. Expert guidance at every step.", f1: "Up to €500,000", f2: "Up to 30 year term", f3: "Best rate guaranteed" },
+          auto: { label: "Automotive", title: "Car Loan", desc: "Financing for your new or used vehicle with express approval.", f1: "New and used", f2: "No down payment option", f3: "Response in 24h" }
+        },
+        procedure: {
+          eyebrow: "How it works", title: "Your loan in 3 simple steps",
+          step1: { title: "Fill out the form", desc: "2 minutes are enough. Our smart form adapts to your situation.", time: "~2 minutes" },
+          step2: { title: "Application review", desc: "Our experts review your application and contact you to refine conditions.", time: "Within 48h" },
+          step3: { title: "Funds transferred", desc: "After final validation and contract signing, funds are transferred to your account.", time: "1 to 5 days" }
+        },
+        about: {
+          eyebrow: "Our mission", title: "Your trusted financial partner",
+          transparency: { title: "Full transparency", desc: "No hidden fees. Every step is clearly documented before any commitment." },
+          expertise: { title: "Regional expertise", desc: "Specialists in the financial markets of Germany, Portugal, Greece, Austria, Italy and Switzerland for over 10 years." },
+          accompagnement: { title: "Personal support", desc: "A dedicated advisor guides you from application to fund disbursement." },
+          testimonials: { title: "What our clients say" }
+        },
+        form: {
+          eyebrow: "Online application", title: "Your financing application", subtitle: "Fill out this secure form. An advisor will contact you within 48 hours.",
+          progress: { step1: "Identity", step2: "Project", step3: "Contact" },
+          step1_title: "Your personal information", step2_title: "Your financing project", step3_title: "Your contact details",
+          fields: {
+            nom: "Last name", prenom: "First name", email: "Email address",
+            pays: { 
+              label: "Country of residence",
+              placeholder: "Select country",
+              de: "🇩🇪 Germany (+49)",
+              pt: "🇵🇹 Portugal (+351)",
+              gr: "🇬🇷 Greece (+30)",
+              at: "🇦🇹 Austria (+43)",
+              it: "🇮🇹 Italy (+39)",
+              ch: "🇨🇭 Switzerland (+41)"
+            },
+            type: { placeholder: "Desired loan type", professionnel: "Business Loan", etudiant: "Student Loan" },
+            montant: "Desired amount (€)",
+            adresse: "WhatsApp number", 
+            adresse_placeholder: "+49 XXX XXXXXXX",
+            codepostal: "Postal code"
+          },
+          buttons: { continuer: "Continue", retour: "Back", submit: "Submit application" },
+          security_note: "Your data is encrypted and protected in accordance with GDPR.",
+          sending: "Sending..."
+        },
+        common: { apply: "Apply" },
+        footer: {
+          description: "Reliable financial solutions for individuals and businesses in Germany, Portugal, Greece, Austria, Italy and Switzerland.",
+          quick_links: "Navigation", our_offers: "Our offers", contact: "Contact",
+          privacy: "Privacy policy", terms: "Terms & conditions", legal: "Legal notice",
+          copyright: "© {year} Zorex Finance. All rights reserved."
+        }
+      },
+
+      fr: {
+        title: "Zorex Finance | Solutions Financières en Europe",
+        brand: "Zorex Finance", brand_tagline: "Solutions financières · DE · PT · GR · AT · IT · CH",
+        nav: { home: "Accueil", offres: "Offres", procedure: "Procédure", apropos: "À propos", demande: "Demander un prêt" },
+        hero: {
+          tag: "Approuvé · Certifié · Sécurisé",
+          title: "Des financements rapides pour <span class='accent'>concrétiser vos projets</span>",
+          subtitle: "Particuliers et professionnels en Allemagne, Portugal, Grèce, Autriche, Italie et Suisse — nous négocions les meilleures conditions pour vous.",
+          cta_primary: "Simuler mon prêt →",
+          cta_secondary: "Découvrir nos offres",
+          trust1: "Sans engagement", trust2: "Taux dès 2,9%", trust3: "Réponse en 48h",
+          slide1_title: "Prêts personnels rapides", slide1_subtitle: "Jusqu'à 50 000 € · Décision en 48h",
+          slide2_title: "Financement immobilier", slide2_subtitle: "Meilleurs taux · Experts dédiés",
+          slide3_title: "Crédit automobile", slide3_subtitle: "Neuf et occasion · Réponse express"
+        },
+        stats: { clients: "Clients satisfaits", financed: "Financements accordés", delay: "Délai de réponse", satisfaction: "Satisfaction client" },
+        trust: { bank: "Partenaire bancaire certifié", ssl: "Données chiffrées SSL", eu: "Conforme réglementation UE", countries: "DE · PT · GR · AT · IT · CH couverts", support: "Support 7j/7" },
+        offers: {
+          eyebrow: "Nos produits", title: "Solutions de financement adaptées", subtitle: "Des offres compétitives pour tous vos projets, avec les meilleurs taux du marché.",
+          popular: "⭐ Le plus populaire", per_year: "/ an",
+          personal: { label: "Particulier", title: "Prêt Personnel", desc: "Pour vos projets, voyages ou dépenses imprévues. Rapidité et flexibilité.", f1: "Jusqu'à 50 000 €", f2: "Remboursement flexible", f3: "Décision sous 48h" },
+          immobilier: { label: "Immobilier", title: "Prêt Immobilier", desc: "Achat ou rénovation de votre bien. Accompagnement expert à chaque étape.", f1: "Jusqu'à 500 000 €", f2: "Durée jusqu'à 30 ans", f3: "Meilleur taux garanti" },
+          auto: { label: "Automobile", title: "Crédit Auto", desc: "Financement pour votre véhicule neuf ou d'occasion, avec un accord express.", f1: "Neuf et occasion", f2: "Sans apport possible", f3: "Réponse en 24h" }
+        },
+        procedure: {
+          eyebrow: "Comment ça marche", title: "Votre prêt en 3 étapes simples",
+          step1: { title: "Remplissez le formulaire", desc: "2 minutes suffisent pour décrire votre projet. Notre formulaire s'adapte à votre situation.", time: "~2 minutes" },
+          step2: { title: "Analyse de votre dossier", desc: "Nos experts examinent votre demande et vous contactent pour affiner les conditions.", time: "Sous 48h" },
+          step3: { title: "Virement des fonds", desc: "Après validation finale et signature, les fonds sont virés directement sur votre compte.", time: "1 à 5 jours" }
+        },
+        about: {
+          eyebrow: "Notre mission", title: "Votre partenaire financier de confiance",
+          transparency: { title: "Transparence totale", desc: "Aucun frais caché. Chaque étape est documentée et expliquée clairement." },
+          expertise: { title: "Expertise régionale", desc: "Spécialistes des marchés financiers d'Allemagne, Portugal, Grèce, Autriche, Italie et Suisse depuis plus de 10 ans." },
+          accompagnement: { title: "Suivi personnalisé", desc: "Un conseiller dédié vous guide de la demande jusqu'au versement des fonds." },
+          testimonials: { title: "Ce que disent nos clients" }
+        },
+        form: {
+          eyebrow: "Demande en ligne", title: "Votre demande de financement", subtitle: "Remplissez ce formulaire sécurisé. Un conseiller vous contacte sous 48h.",
+          progress: { step1: "Identité", step2: "Projet", step3: "Contact" },
+          step1_title: "Vos informations personnelles", step2_title: "Votre projet de financement", step3_title: "Vos coordonnées",
+          fields: {
+            nom: "Nom de famille", prenom: "Prénom", email: "Adresse e-mail",
+            pays: { 
+              label: "Pays de résidence",
+              placeholder: "Sélectionner un pays",
+              de: "🇩🇪 Allemagne (+49)",
+              pt: "🇵🇹 Portugal (+351)",
+              gr: "🇬🇷 Grèce (+30)",
+              at: "🇦🇹 Autriche (+43)",
+              it: "🇮🇹 Italie (+39)",
+              ch: "🇨🇭 Suisse (+41)"
+            },
+            type: { placeholder: "Type de prêt souhaité", professionnel: "Prêt Professionnel", etudiant: "Prêt Étudiant" },
+            montant: "Montant souhaité (€)",
+            adresse: "Numéro WhatsApp", 
+            adresse_placeholder: "+49 XXX XXXXXXX",
+            codepostal: "Code postal"
+          },
+          buttons: { continuer: "Continuer", retour: "Retour", submit: "Envoyer ma demande" },
+          security_note: "Vos données sont chiffrées et protégées conformément au RGPD.",
+          sending: "Envoi en cours..."
+        },
+        common: { apply: "Faire une demande" },
+        footer: {
+          description: "Solutions financières fiables pour particuliers et professionnels en Allemagne, Portugal, Grèce, Autriche, Italie et Suisse.",
+          quick_links: "Navigation", our_offers: "Nos offres", contact: "Contact",
+          privacy: "Confidentialité", terms: "Conditions générales", legal: "Mentions légales",
+          copyright: "© {year} Zorex Finance. Tous droits réservés."
+        }
+      },
+
+      it: {
+        title: "Zorex Finance | Soluzioni Finanziarie in Europa",
+        brand: "Zorex Finance", brand_tagline: "Soluzioni finanziarie · DE · PT · GR · AT · IT · CH",
+        nav: { home: "Home", offres: "Offerte", procedure: "Procedura", apropos: "Chi siamo", demande: "Richiedi un prestito" },
+        hero: {
+          tag: "Approvato · Certificato · Sicuro",
+          title: "Finanziamenti rapidi per <span class='accent'>realizzare i tuoi progetti</span>",
+          subtitle: "Privati e aziende in Germania, Portogallo, Grecia, Austria, Italia e Svizzera — negoziamo le migliori condizioni per voi.",
+          cta_primary: "Simula il mio prestito →",
+          cta_secondary: "Scopri le offerte",
+          trust1: "Senza impegno", trust2: "Tasso dal 2,9%", trust3: "Risposta in 48h",
+          slide1_title: "Prestiti personali veloci", slide1_subtitle: "Fino a 50.000 € · Decisione in 48h",
+          slide2_title: "Finanziamento immobiliare", slide2_subtitle: "Migliori tassi · Esperti dedicati",
+          slide3_title: "Credito auto", slide3_subtitle: "Nuovo e usato · Risposta express"
+        },
+        stats: { clients: "Clienti soddisfatti", financed: "Finanziamenti concessi", delay: "Tempo di risposta", satisfaction: "Soddisfazione clienti" },
+        trust: { bank: "Partner bancario certificato", ssl: "Dati crittografati SSL", eu: "Conforme normativa UE", countries: "DE · PT · GR · AT · IT · CH coperti", support: "Supporto 7 giorni/settimana" },
+        offers: {
+          eyebrow: "I nostri prodotti", title: "Soluzioni finanziarie su misura", subtitle: "Offerte competitive per tutti i vostri progetti ai migliori tassi di mercato.",
+          popular: "⭐ Il più popolare", per_year: "/ anno",
+          personal: { label: "Privato", title: "Prestito Personale", desc: "Per i vostri progetti, viaggi o spese impreviste. Velocità e flessibilità.", f1: "Fino a 50.000 €", f2: "Rimborso flessibile", f3: "Decisione in 48h" },
+          immobilier: { label: "Immobiliare", title: "Prestito Immobiliare", desc: "Acquisto o ristrutturazione del vostro immobile. Assistenza specializzata.", f1: "Fino a 500.000 €", f2: "Durata fino a 30 anni", f3: "Miglior tasso garantito" },
+          auto: { label: "Automobile", title: "Credito Auto", desc: "Finanziamento per il vostro veicolo nuovo o usato con approvazione rapida.", f1: "Nuovo e usato", f2: "Senza anticipo possibile", f3: "Risposta in 24h" }
+        },
+        procedure: {
+          eyebrow: "Come funziona", title: "Il tuo prestito in 3 semplici passi",
+          step1: { title: "Compila il modulo", desc: "2 minuti bastano. Il nostro modulo intelligente si adatta alla tua situazione.", time: "~2 minuti" },
+          step2: { title: "Analisi della pratica", desc: "I nostri esperti esaminano la richiesta e vi contattano per definire le condizioni.", time: "Entro 48h" },
+          step3: { title: "Trasferimento dei fondi", desc: "Dopo la validazione finale e la firma del contratto, i fondi vengono trasferiti sul vostro conto.", time: "1 a 5 giorni" }
+        },
+        about: {
+          eyebrow: "La nostra missione", title: "Il vostro partner finanziario di fiducia",
+          transparency: { title: "Trasparenza totale", desc: "Nessun costo nascosto. Ogni fase è chiaramente documentata prima di qualsiasi impegno." },
+          expertise: { title: "Esperienza regionale", desc: "Specialisti nei mercati finanziari di Germania, Portogallo, Grecia, Austria, Italia e Svizzera da oltre 10 anni." },
+          accompagnement: { title: "Assistenza personalizzata", desc: "Un consulente dedicato vi guida dalla richiesta all'erogazione dei fondi." },
+          testimonials: { title: "Cosa dicono i nostri clienti" }
+        },
+        form: {
+          eyebrow: "Richiesta online", title: "La tua richiesta di finanziamento", subtitle: "Compila questo modulo sicuro. Un consulente vi contatterà entro 48 ore.",
+          progress: { step1: "Identità", step2: "Progetto", step3: "Contatto" },
+          step1_title: "Le vostre informazioni personali", step2_title: "Il vostro progetto di finanziamento", step3_title: "I vostri dati di contatto",
+          fields: {
+            nom: "Cognome", prenom: "Nome", email: "Indirizzo e-mail",
+            pays: { 
+              label: "Paese di residenza",
+              placeholder: "Seleziona paese",
+              de: "🇩🇪 Germania (+49)",
+              pt: "🇵🇹 Portogallo (+351)",
+              gr: "🇬🇷 Grecia (+30)",
+              at: "🇦🇹 Austria (+43)",
+              it: "🇮🇹 Italia (+39)",
+              ch: "🇨🇭 Svizzera (+41)"
+            },
+            type: { placeholder: "Tipo di prestito desiderato", professionnel: "Prestito Professionale", etudiant: "Prestito Studenti" },
+            montant: "Importo desiderato (€)",
+            adresse: "Numero WhatsApp", 
+            adresse_placeholder: "+39 XXX XXX XXXX",
+            codepostal: "Codice postale"
+          },
+          buttons: { continuer: "Continua", retour: "Indietro", submit: "Invia richiesta" },
+          security_note: "I vostri dati sono crittografati e protetti in conformità al GDPR.",
+          sending: "Invio in corso..."
+        },
+        common: { apply: "Richiedi" },
+        footer: {
+          description: "Soluzioni finanziarie affidabili per privati e aziende in Germania, Portogallo, Grecia, Austria, Italia e Svizzera.",
+          quick_links: "Navigazione", our_offers: "Le nostre offerte", contact: "Contatto",
+          privacy: "Privacy", terms: "Termini e condizioni", legal: "Note legali",
+          copyright: "© {year} Zorex Finance. Tutti i diritti riservati."
+        }
+      },
+
+      es: {
+        title: "Zorex Finance | Soluciones Financieras en Europa",
+        brand: "Zorex Finance", brand_tagline: "Soluciones financieras · DE · PT · GR · AT · IT · CH",
+        nav: { home: "Inicio", offres: "Ofertas", procedure: "Proceso", apropos: "Sobre nosotros", demande: "Solicitar préstamo" },
+        hero: {
+          tag: "Aprobado · Certificado · Seguro",
+          title: "Financiaciones rápidas para <span class='accent'>hacer realidad sus proyectos</span>",
+          subtitle: "Particulares y empresas en Alemania, Portugal, Grecia, Austria, Italia y Suiza — negociamos las mejores condiciones para usted.",
+          cta_primary: "Simular mi préstamo →",
+          cta_secondary: "Descubrir ofertas",
+          trust1: "Sin compromiso", trust2: "Tasas desde 2,9%", trust3: "Respuesta en 48h",
+          slide1_title: "Préstamos personales rápidos", slide1_subtitle: "Hasta 50.000 € · Decisión en 48h",
+          slide2_title: "Financiación inmobiliaria", slide2_subtitle: "Mejores tasas · Expertos dedicados",
+          slide3_title: "Crédito de coche", slide3_subtitle: "Nuevo y usado · Respuesta exprés"
+        },
+        stats: { clients: "Clientes satisfechos", financed: "Financiaciones concedidas", delay: "Tiempo de respuesta", satisfaction: "Satisfacción del cliente" },
+        trust: { bank: "Socio bancario certificado", ssl: "Datos cifrados SSL", eu: "Conforme normativa UE", countries: "DE · PT · GR · AT · IT · CH cubiertos", support: "Soporte 7 días/semana" },
+        offers: {
+          eyebrow: "Nuestros productos", title: "Soluciones de financiación a medida", subtitle: "Ofertas competitivas para todos sus proyectos a las mejores tasas del mercado.",
+          popular: "⭐ El más popular", per_year: "/ año",
+          personal: { label: "Particular", title: "Préstamo Personal", desc: "Para sus proyectos, viajes o gastos imprevistos. Rapidez y flexibilidad.", f1: "Hasta 50.000 €", f2: "Reembolso flexible", f3: "Decisión en 48h" },
+          immobilier: { label: "Inmobiliaria", title: "Préstamo Hipotecario", desc: "Compra o renovación de su inmueble. Acompañamiento experto.", f1: "Hasta 500.000 €", f2: "Plazo hasta 30 años", f3: "Mejor tasa garantizada" },
+          auto: { label: "Automóvil", title: "Crédito de Coche", desc: "Financiación para su vehículo nuevo o de ocasión con aprobación exprés.", f1: "Nuevo y de ocasión", f2: "Sin entrada posible", f3: "Respuesta en 24h" }
+        },
+        procedure: {
+          eyebrow: "Cómo funciona", title: "Su préstamo en 3 simples pasos",
+          step1: { title: "Rellenar el formulario", desc: "2 minutos son suficientes. Nuestro formulario inteligente se adapta a su situación.", time: "~2 minutos" },
+          step2: { title: "Análisis de su solicitud", desc: "Nuestros expertos examinan su solicitud y le contactan para definir las condiciones.", time: "En 48h" },
+          step3: { title: "Transferencia de fondos", desc: "Tras la validación final y la firma del contrato, los fondos se transfieren a su cuenta.", time: "1 a 5 días" }
+        },
+        about: {
+          eyebrow: "Nuestra misión", title: "Su socio financiero de confianza",
+          transparency: { title: "Transparencia total", desc: "Sin costes ocultos. Cada paso está claramente documentado antes de cualquier compromiso." },
+          expertise: { title: "Experiencia regional", desc: "Especialistas en los mercados financieros de Alemania, Portugal, Grecia, Austria, Italia y Suiza desde hace más de 10 años." },
+          accompagnement: { title: "Seguimiento personalizado", desc: "Un asesor dedicado le guía desde la solicitud hasta el desembolso de los fondos." },
+          testimonials: { title: "Lo que dicen nuestros clientes" }
+        },
+        form: {
+          eyebrow: "Solicitud online", title: "Su solicitud de financiación", subtitle: "Rellene este formulario seguro. Un asesor le contactará en 48 horas.",
+          progress: { step1: "Identidad", step2: "Proyecto", step3: "Contacto" },
+          step1_title: "Sus datos personales", step2_title: "Su proyecto de financiación", step3_title: "Sus datos de contacto",
+          fields: {
+            nom: "Apellido", prenom: "Nombre", email: "Dirección de e-mail",
+            pays: { 
+              label: "País de residencia",
+              placeholder: "Seleccionar país",
+              de: "🇩🇪 Alemania (+49)",
+              pt: "🇵🇹 Portugal (+351)",
+              gr: "🇬🇷 Grecia (+30)",
+              at: "🇦🇹 Austria (+43)",
+              it: "🇮🇹 Italia (+39)",
+              ch: "🇨🇭 Suiza (+41)"
+            },
+            type: { placeholder: "Tipo de préstamo deseado", professionnel: "Préstamo Profesional", etudiant: "Préstamo Estudiantil" },
+            montant: "Importe deseado (€)",
+            adresse: "Número WhatsApp", 
+            adresse_placeholder: "+34 XXX XXX XXX",
+            codepostal: "Código postal"
+          },
+          buttons: { continuer: "Continuar", retour: "Volver", submit: "Enviar solicitud" },
+          security_note: "Sus datos están cifrados y protegidos de acuerdo con el RGPD.",
+          sending: "Enviando..."
+        },
+        common: { apply: "Solicitar" },
+        footer: {
+          description: "Soluciones financieras fiables para particulares y empresas en Alemania, Portugal, Grecia, Austria, Italia y Suiza.",
+          quick_links: "Navegación", our_offers: "Nuestras ofertas", contact: "Contacto",
+          privacy: "Privacidad", terms: "Términos y condiciones", legal: "Aviso legal",
+          copyright: "© {year} Zorex Finance. Todos los derechos reservados."
+        }
+      }
+    };
+
+    // ===== WHATSAPP PLACEHOLDER MAPPING =====
+    const WHATSAPP_FORMATS = {
+      'DE': '+49 XXX XXXXXXX',
+      'PT': '+351 XXX XXX XXX',
+      'GR': '+30 XXX XXX XXXX',
+      'AT': '+43 XXX XXXXXXX',
+      'IT': '+39 XXX XXX XXXX',
+      'CH': '+41 XX XXX XX XX'
+    };
+
+    // Language detection: browser language → map to supported, default to 'de'
+    function detectLanguage() {
+      const saved = localStorage.getItem('zorex_lang');
+      if (saved && TRANSLATIONS[saved]) return saved;
+
+      const browserLang = (navigator.language || navigator.userLanguage || 'de').toLowerCase();
+      const primary = browserLang.split('-')[0];
+
+      // Direct match
+      if (TRANSLATIONS[primary]) return primary;
+
+      // Extended mapping for variants
+      const langMap = {
+        'pt': 'pt', 'br': 'pt',
+        'el': 'el', 'gr': 'el',
+        'de': 'de', 'at': 'de', 'ch': 'de',
+        'fr': 'fr', 'be': 'fr',
+        'it': 'it',
+        'es': 'es', 'ca': 'es',
+        'en': 'en'
+      };
+
+      return langMap[primary] || 'de'; // Default: German
+    }
+
+    function app() {
+      return {
+        mobileOpen: false,
+        currentLang: null,
+        languages: [
+          { code: 'de', label: 'DE', name: 'Deutsch', flag: 'https://flagcdn.com/w40/de.png' },
+          { code: 'pt', label: 'PT', name: 'Português', flag: 'https://flagcdn.com/w40/pt.png' },
+          { code: 'el', label: 'GR', name: 'Ελληνικά', flag: 'https://flagcdn.com/w40/gr.png' },
+          { code: 'en', label: 'EN', name: 'English', flag: 'https://flagcdn.com/w40/gb.png' },
+          { code: 'fr', label: 'FR', name: 'Français', flag: 'https://flagcdn.com/w40/fr.png' },
+          { code: 'it', label: 'IT', name: 'Italiano', flag: 'https://flagcdn.com/w40/it.png' },
+          { code: 'es', label: 'ES', name: 'Español', flag: 'https://flagcdn.com/w40/es.png' }
+        ],
+
+        init() {
+          this.$store.theme.init();
+          const code = detectLanguage();
+          this.currentLang = this.languages.find(l => l.code === code) || this.languages[0];
+          document.documentElement.lang = this.currentLang.code;
+        },
+
+        selectLang(lang) {
+          this.currentLang = lang;
+          localStorage.setItem('zorex_lang', lang.code);
+          document.documentElement.lang = lang.code;
+        },
+
+        $t(key, params = {}) {
+          const dict = TRANSLATIONS[this.currentLang?.code] || TRANSLATIONS.de;
+          let text = key.split('.').reduce((o, k) => o?.[k], dict) ?? key;
+          Object.entries(params).forEach(([k, v]) => { text = text.replaceAll(`{${k}}`, v); });
+          return text;
+        }
+      }
+    }
+
+    function heroCarousel() {
+      return {
+        current: 0,
+        slides: [
+          { img: 'assets/img/hero.jpg', titleKey: 'hero.slide1_title', subtitleKey: 'hero.slide1_subtitle' },
+          { img: 'assets/img/hero2.jpg', titleKey: 'hero.slide2_title', subtitleKey: 'hero.slide2_subtitle' },
+          { img: 'assets/img/hero3.jpg', titleKey: 'hero.slide3_title', subtitleKey: 'hero.slide3_subtitle' }
+        ],
+        init() { setInterval(() => this.next(), 6000); },
+        next() { this.current = (this.current + 1) % this.slides.length; },
+        prev() { this.current = (this.current - 1 + this.slides.length) % this.slides.length; },
+        goTo(i) { this.current = i; }
+      }
+    }
+
+    function aboutSection() {
+      return {
+        current: 0,
+        testimonials: [
+          { name: 'Sophie M.', location: 'Berlin, Deutschland', img: 'assets/img/client1.jpg', text: 'Zorex Finance hat meinen Kreditantrag einfach und sehr schnell gemacht. Ihr Team ist professionell, verfügbar und hört wirklich zu. Ich empfehle ohne Zögern!' },
+          { name: 'Marco L.', location: 'Lissabon, Portugal', img: 'assets/img/client2.jpg', text: 'Klare Erklärungen, wettbewerbsfähige Zinsen und eine beispielhafte persönliche Betreuung. Ich habe meinen Immobilienkredit in weniger als 5 Werktagen erhalten. Danke!' },
+          { name: 'Elena S.', location: 'Athen, Griechenland', img: 'assets/img/client3.jpg', text: 'Dank Zorex Finance habe ich schnell und stressfrei meinen Autokredit erhalten. Ein zuverlässiges, freundliches und sehr professionelles Team.' }
+        ],
+        init() { setInterval(() => this.next(), 8000); },
+        next() { this.current = (this.current + 1) % this.testimonials.length; },
+        prev() { this.current = (this.current - 1 + this.testimonials.length) % this.testimonials.length; }
+      }
+    }
+
+    function wizard() {
+      return {
+        step: 1,
+        loading: false,
+        form: { nom: '', prenom: '', email: '', pays: '', type: '', montant: '', adresse: '', codepostal: '' },
+        whatsappPlaceholder: '+49 XXX XXXXXXX',
+
+        // Mettre à jour le placeholder WhatsApp selon le pays sélectionné
+        updateWhatsAppPlaceholder() {
+          const countryCode = this.form.pays;
+          this.whatsappPlaceholder = WHATSAPP_FORMATS[countryCode] || '+49 XXX XXXXXXX';
+        },
+
+        nextStep() {
+          if (this.step === 1) {
+            if (!this.form.nom || !this.form.prenom || !this.form.email || !this.form.pays) { alert('Bitte alle Pflichtfelder ausfüllen.'); return; }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.form.email)) { alert('Bitte eine gültige E-Mail-Adresse eingeben.'); return; }
+            // Mettre à jour le placeholder WhatsApp quand on passe à l'étape suivante
+            this.updateWhatsAppPlaceholder();
+          }
+          if (this.step === 2) {
+            if (!this.form.type || !this.form.montant) { alert('Bitte Kreditart und Betrag angeben.'); return; }
+          }
+          if (this.step < 3) this.step++;
+        },
+
+        prevStep() { if (this.step > 1) this.step--; },
+
+        submitForm() {
+          if (!this.form.adresse || !this.form.codepostal) { alert('Bitte alle Felder ausfüllen.'); return; }
+          this.loading = true;
+          let formData = new FormData();
+          for (const key in this.form) formData.append(key, this.form[key]);
+          formData.append('lang', document.documentElement.lang || 'de');
+          fetch('/api/submit_form.php', { method: 'POST', body: formData })
+            .then(res => res.json())
+            .then(data => {
+              if (data.success) {
+                window.location.href = 'success.html?' + new URLSearchParams(this.form).toString();
+              } else {
+                this.loading = false;
+                alert("Fehler beim Speichern. Bitte erneut versuchen.");
+              }
+            })
+            .catch(() => {
+              this.loading = false;
+              alert("Netzwerkfehler. Bitte erneut versuchen.");
+            });
+        }
+      }
+    }
+  </script>
+</body>
+
+</html>

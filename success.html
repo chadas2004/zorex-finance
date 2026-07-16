@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="de" x-data="successPage()" x-init="init()">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title x-text="$t('title')">Anfrage erhalten | Zorex Finance</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23042C53'/><path d='M16 4L6 10v7c0 6.6 4.4 12.8 10 14.4 5.6-1.6 10-7.8 10-14.4V10L16 4z' fill='none' stroke='%23FAC775' stroke-width='2'/></svg>">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+  <style>
+    :root {
+      --navy: #042C53;
+      --navy-mid: #0C447C;
+      --blue: #185FA5;
+      --gold: #FAC775;
+      --gold-dark: #EF9F27;
+      --gold-deeper: #BA7517;
+      --cream: #FAFAF8;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: #1a1a1a; min-height: 100vh; }
+    .font-display { font-family: 'Playfair Display', serif; }
+
+    /* Dark mode */
+    .dark body { background: #0a1628; color: #e8edf4; }
+    .dark .nav-bg { background: rgba(10,22,40,0.97) !important; border-color: rgba(255,255,255,0.07) !important; }
+    .dark .card-surface { background: #0f2040 !important; border-color: rgba(255,255,255,0.08) !important; }
+    .dark .recap-bg { background: #0a1628 !important; border-color: rgba(255,255,255,0.06) !important; }
+    .dark .lang-menu { background: #0f2040 !important; border-color: rgba(255,255,255,0.1) !important; }
+    .dark .lang-option:hover { background: rgba(255,255,255,0.05) !important; }
+    .dark .recap-label { color: #94a3b8 !important; }
+    .dark .recap-value { color: #e2e8f0 !important; }
+    .dark .footer-bg { background: #021629 !important; }
+    .dark .back-link { color: var(--gold) !important; }
+
+    /* Header */
+    .nav-bg {
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(4,44,83,0.08);
+    }
+    .nav-link { font-size: 14px; color: #374151; transition: color 0.2s; text-decoration: none; }
+    .nav-link:hover { color: var(--navy); }
+    .dark .nav-link { color: #94a3b8; }
+    .dark .nav-link:hover { color: var(--gold); }
+
+    /* Cards */
+    .card-surface {
+      background: #ffffff;
+      border: 1px solid rgba(4,44,83,0.08);
+      border-radius: 20px;
+    }
+    .recap-bg {
+      background: #F8FAFC;
+      border: 1px solid rgba(4,44,83,0.06);
+      border-radius: 14px;
+    }
+
+    /* Success animation */
+    @keyframes successPop {
+      0%   { transform: scale(0.4); opacity: 0; }
+      60%  { transform: scale(1.15); opacity: 1; }
+      80%  { transform: scale(0.95); }
+      100% { transform: scale(1); }
+    }
+    @keyframes confettiDrop {
+      0%   { opacity: 1; transform: translateY(-20px) rotate(0deg); }
+      100% { opacity: 0; transform: translateY(80px) rotate(360deg); }
+    }
+    .success-icon { animation: successPop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+    .confetti-dot {
+      position: absolute;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      animation: confettiDrop 1.6s ease-out forwards;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up { animation: fadeUp 0.5s ease forwards; }
+    .delay-1 { animation-delay: 0.35s; opacity: 0; }
+    .delay-2 { animation-delay: 0.5s; opacity: 0; }
+    .delay-3 { animation-delay: 0.65s; opacity: 0; }
+    .delay-4 { animation-delay: 0.8s; opacity: 0; }
+    .delay-5 { animation-delay: 0.95s; opacity: 0; }
+
+    /* Check circle */
+    .check-circle {
+      width: 88px; height: 88px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto;
+      box-shadow: 0 0 0 12px rgba(34,197,94,0.1), 0 0 0 24px rgba(34,197,94,0.05);
+    }
+
+    /* WhatsApp btn */
+    .wa-btn-main {
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: white;
+      font-weight: 600; font-size: 15px;
+      padding: 16px 28px;
+      border-radius: 14px;
+      text-decoration: none;
+      transition: all 0.2s;
+      box-shadow: 0 4px 20px rgba(34,197,94,0.25);
+    }
+    .wa-btn-main:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(34,197,94,0.35); }
+
+    /* Recap row */
+    .recap-row {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(4,44,83,0.05);
+    }
+    .dark .recap-row { border-color: rgba(255,255,255,0.05); }
+    .recap-row:last-child { border-bottom: none; }
+    .recap-icon {
+      width: 32px; height: 32px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-size: 14px;
+    }
+
+    /* Steps timeline */
+    .timeline-item { position: relative; padding-left: 36px; }
+    .timeline-item::before {
+      content: '';
+      position: absolute; left: 11px; top: 28px;
+      width: 1px; bottom: -8px;
+      background: rgba(4,44,83,0.1);
+    }
+    .dark .timeline-item::before { background: rgba(255,255,255,0.08); }
+    .timeline-item:last-child::before { display: none; }
+    .timeline-dot {
+      position: absolute; left: 0; top: 4px;
+      width: 24px; height: 24px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 600;
+    }
+
+    /* Lang dropdown */
+    .lang-menu {
+      position: absolute; right: 0; top: calc(100% + 8px);
+      background: white;
+      border: 1px solid rgba(4,44,83,0.1);
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+      min-width: 160px; z-index: 100; overflow: hidden;
+    }
+    .lang-option:hover { background: rgba(4,44,83,0.04); }
+
+    /* Floating WA */
+    @keyframes pulse-ring {
+      0%   { box-shadow: 0 0 0 0 rgba(34,197,94,0.5); }
+      70%  { box-shadow: 0 0 0 14px rgba(34,197,94,0); }
+      100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); }
+    }
+    .wa-float { animation: pulse-ring 2.5s ease-in-out infinite; }
+
+    /* Footer */
+    .footer-bg { background: #021629; }
+
+    .section-eyebrow {
+      display: inline-block;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--gold-deeper);
+      background: rgba(250,199,117,0.12);
+      padding: 4px 12px; border-radius: 50px;
+    }
+  </style>
+</head>
+
+<body :class="$store.theme.current === 'dark' ? 'dark' : ''" class="transition-colors duration-300">
+
+<script>
+document.addEventListener('alpine:init', () => {
+  Alpine.store('theme', {
+    current: localStorage.getItem('theme') || 'light',
+    toggle() {
+      this.current = this.current === 'light' ? 'dark' : 'light';
+      document.documentElement.classList.toggle('dark', this.current === 'dark');
+      localStorage.setItem('theme', this.current);
+    },
+    init() { document.documentElement.classList.toggle('dark', this.current === 'dark'); }
+  });
+});
+</script>
+
+<!-- ===== HEADER ===== -->
+<header class="fixed w-full nav-bg z-50 transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-5 py-4 flex items-center justify-between">
+
+    <!-- Logo -->
+    <a href="index.html" class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:#042C53">
+        <img src="assets/logo.png" alt="Zorex Finance Logo" class="w-full h-full object-cover">
+      </div>
+      <div>
+        <span class="text-[17px] font-semibold text-navy dark:text-white" style="font-family:'Playfair Display',serif;color:#042C53" x-text="$t('brand')"></span>
+        <div class="text-[10px] text-gray-400 leading-none mt-0.5" x-text="$t('brand_tagline')"></div>
+      </div>
+    </a>
+
+    <!-- Right controls -->
+    <div class="flex items-center gap-3">
+      <!-- Theme -->
+      <button @click="$store.theme.toggle()" class="w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+        <i class="bi bi-sun text-gray-600 dark:text-gray-300" x-show="$store.theme.current === 'light'"></i>
+        <i class="bi bi-moon text-gray-300" x-show="$store.theme.current === 'dark'"></i>
+      </button>
+
+      <!-- Lang -->
+      <div class="relative" x-data="{open:false}">
+        <button @click="open=!open" class="flex items-center gap-2 px-3 h-9 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition text-sm font-medium">
+          <img :src="currentLang.flag" alt="" class="w-5 h-3.5 rounded-sm object-cover">
+          <span x-text="currentLang.label" class="text-gray-700 dark:text-gray-300"></span>
+          <i class="bi bi-chevron-down text-xs text-gray-500"></i>
+        </button>
+        <div x-show="open" x-cloak @click.outside="open=false" class="lang-menu"
+             x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100">
+          <template x-for="lang in languages" :key="lang.code">
+            <button @click="selectLang(lang);open=false" class="lang-option flex items-center gap-3 w-full px-4 py-3 text-sm text-gray-700 dark:text-gray-200">
+              <img :src="lang.flag" alt="" class="w-5 h-3.5 rounded-sm object-cover">
+              <span x-text="lang.name"></span>
+              <i class="bi bi-check ml-auto" style="color:#042C53" x-show="currentLang.code === lang.code"></i>
+            </button>
+          </template>
+        </div>
+      </div>
+
+      <!-- Back to home -->
+      <a href="index.html" class="hidden md:flex items-center gap-2 px-4 h-9 rounded-lg border border-gray-200 dark:border-gray-700 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+        <i class="bi bi-arrow-left text-xs"></i>
+        <span x-text="$t('success.back_short')"></span>
+      </a>
+    </div>
+  </div>
+</header>
+
+
+<!-- ===== MAIN ===== -->
+<main class="pt-28 pb-20 px-5">
+  <div class="max-w-2xl mx-auto">
+
+    <!-- Success card -->
+    <div class="card-surface p-8 md:p-10 text-center mb-6 relative overflow-hidden">
+
+      <!-- Confetti dots (decorative) -->
+      <div class="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+        <div class="confetti-dot" style="background:#FAC775;top:10%;left:15%;animation-delay:0.1s"></div>
+        <div class="confetti-dot" style="background:#22c55e;top:8%;left:35%;animation-delay:0.25s"></div>
+        <div class="confetti-dot" style="background:#185FA5;top:12%;left:60%;animation-delay:0.15s"></div>
+        <div class="confetti-dot" style="background:#FAC775;top:6%;left:80%;animation-delay:0.3s"></div>
+        <div class="confetti-dot" style="background:#f97316;top:15%;left:50%;animation-delay:0.05s;width:6px;height:6px"></div>
+        <div class="confetti-dot" style="background:#a855f7;top:5%;left:25%;animation-delay:0.2s;width:5px;height:5px"></div>
+        <div class="confetti-dot" style="background:#22c55e;top:10%;left:90%;animation-delay:0.35s"></div>
+      </div>
+
+      <!-- Icon -->
+      <div class="success-icon mb-6">
+        <div class="check-circle">
+          <i class="bi bi-check-lg text-white text-4xl" style="font-size:40px;line-height:1"></i>
+        </div>
+      </div>
+
+      <!-- Eyebrow -->
+      <div class="section-eyebrow fade-up delay-1 mb-4" x-text="$t('success.eyebrow')"></div>
+
+      <!-- Title -->
+      <h1 class="font-display text-3xl md:text-4xl font-semibold mb-4 fade-up delay-2" style="color:#042C53;font-family:'Playfair Display',serif" x-text="$t('success.title')"></h1>
+      <div class="dark:hidden" style="color:#042C53"></div>
+
+      <!-- Reference ID -->
+      <div class="text-xs text-gray-400 dark:text-gray-500 font-mono mt-2 mb-4 fade-up delay-2">
+        <span x-text="$t('success.reference_label')"></span> : <strong class="text-navy dark:text-gold" x-text="referenceId"></strong>
+      </div>
+
+      <!-- Message -->
+      <p class="text-gray-500 dark:text-gray-400 text-[15px] leading-relaxed mb-2 fade-up delay-2" x-html="$t('success.message', { prenom: form.prenom, nom: form.nom })"></p>
+
+      <!-- Response time badge -->
+      <div class="inline-flex items-center gap-2 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700/40 text-amber-700 dark:text-amber-400 text-xs font-medium px-4 py-2 rounded-full mt-2 mb-6 fade-up delay-3">
+        <i class="bi bi-clock-fill"></i>
+        <span x-text="$t('success.response_time')"></span>
+      </div>
+    </div>
+
+    <!-- Récapitulatif -->
+    <div class="card-surface p-7 mb-6 fade-up delay-3">
+      <div class="flex items-center gap-3 mb-5">
+        <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background:#042C53">
+          <i class="bi bi-file-text-fill text-sm" style="color:#FAC775"></i>
+        </div>
+        <h2 class="font-semibold text-[16px]" style="color:#042C53;font-family:'Playfair Display',serif" x-text="$t('success.recap_title')"></h2>
+      </div>
+
+      <div class="recap-bg p-4">
+        <!-- Identity -->
+        <div class="recap-row">
+          <div class="recap-icon" style="background:#E6F1FB">
+            <i class="bi bi-person-fill" style="color:#185FA5"></i>
+          </div>
+          <div>
+            <div class="recap-label text-xs text-gray-400 dark:text-gray-500 mb-0.5" x-text="$t('form.fields.prenom') + ' / ' + $t('form.fields.nom')"></div>
+            <div class="recap-value font-medium text-gray-800 dark:text-gray-100 text-sm" x-text="form.prenom + ' ' + form.nom"></div>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="recap-row">
+          <div class="recap-icon" style="background:#EAF3DE">
+            <i class="bi bi-envelope-fill" style="color:#3B6D11"></i>
+          </div>
+          <div>
+            <div class="recap-label text-xs text-gray-400 dark:text-gray-500 mb-0.5" x-text="$t('form.fields.email')"></div>
+            <div class="recap-value font-medium text-gray-800 dark:text-gray-100 text-sm" x-text="form.email"></div>
+          </div>
+        </div>
+
+        <!-- Country -->
+        <div class="recap-row">
+          <div class="recap-icon" style="background:#FAEEDA">
+            <i class="bi bi-geo-alt-fill" style="color:#854F0B"></i>
+          </div>
+          <div>
+            <div class="recap-label text-xs text-gray-400 dark:text-gray-500 mb-0.5" x-text="$t('form.fields.pays.label')"></div>
+            <div class="recap-value font-medium text-gray-800 dark:text-gray-100 text-sm" x-text="getCountryLabel(form.pays)"></div>
+          </div>
+        </div>
+
+        <!-- Loan type -->
+        <div class="recap-row">
+          <div class="recap-icon" style="background:#E1F5EE">
+            <i class="bi bi-bank2" style="color:#0F6E56"></i>
+          </div>
+          <div>
+            <div class="recap-label text-xs text-gray-400 dark:text-gray-500 mb-0.5" x-text="$t('form.fields.type.placeholder')"></div>
+            <div class="recap-value font-medium text-gray-800 dark:text-gray-100 text-sm" x-text="getLoanTypeLabel(form.type)"></div>
+          </div>
+        </div>
+
+        <!-- Amount -->
+        <div class="recap-row">
+          <div class="recap-icon" style="background:#EEEDFE">
+            <i class="bi bi-currency-euro" style="color:#534AB7"></i>
+          </div>
+          <div>
+            <div class="recap-label text-xs text-gray-400 dark:text-gray-500 mb-0.5" x-text="$t('form.fields.montant')"></div>
+            <div class="font-display text-lg font-semibold" style="color:#042C53" x-text="formatAmount(form.montant)"></div>
+          </div>
+        </div>
+
+        <!-- WhatsApp -->
+        <div class="recap-row">
+          <div class="recap-icon" style="background:#dcfce7">
+            <i class="bi bi-whatsapp" style="color:#16a34a"></i>
+          </div>
+          <div>
+            <div class="recap-label text-xs text-gray-400 dark:text-gray-500 mb-0.5" x-text="$t('form.fields.adresse')"></div>
+            <div class="recap-value font-medium text-gray-800 dark:text-gray-100 text-sm" x-text="form.adresse"></div>
+          </div>
+        </div>
+
+        <!-- Postal code -->
+        <div class="recap-row">
+          <div class="recap-icon" style="background:#fce7f3">
+            <i class="bi bi-mailbox2-flag" style="color:#993556"></i>
+          </div>
+          <div>
+            <div class="recap-label text-xs text-gray-400 dark:text-gray-500 mb-0.5" x-text="$t('form.fields.codepostal')"></div>
+            <div class="recap-value font-medium text-gray-800 dark:text-gray-100 text-sm" x-text="form.codepostal"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- What happens next -->
+    <div class="card-surface p-7 mb-6 fade-up delay-4">
+      <div class="flex items-center gap-3 mb-5">
+        <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background:#042C53">
+          <i class="bi bi-list-check text-sm" style="color:#FAC775"></i>
+        </div>
+        <h2 class="font-semibold text-[16px]" style="color:#042C53;font-family:'Playfair Display',serif" x-text="$t('success.next_title')"></h2>
+      </div>
+
+      <div class="space-y-4">
+        <div class="timeline-item pb-4">
+          <div class="timeline-dot" style="background:#EAF3DE;color:#3B6D11">1</div>
+          <div class="pl-2">
+            <div class="font-medium text-sm text-gray-800 dark:text-gray-100 mb-1" x-text="$t('success.next1_title')"></div>
+            <div class="text-xs text-gray-500 dark:text-gray-400 leading-relaxed" x-text="$t('success.next1_desc')"></div>
+          </div>
+        </div>
+        <div class="timeline-item pb-4">
+          <div class="timeline-dot" style="background:#E6F1FB;color:#185FA5">2</div>
+          <div class="pl-2">
+            <div class="font-medium text-sm text-gray-800 dark:text-gray-100 mb-1" x-text="$t('success.next2_title')"></div>
+            <div class="text-xs text-gray-500 dark:text-gray-400 leading-relaxed" x-text="$t('success.next2_desc')"></div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot" style="background:#FAEEDA;color:#854F0B">3</div>
+          <div class="pl-2">
+            <div class="font-medium text-sm text-gray-800 dark:text-gray-100 mb-1" x-text="$t('success.next3_title')"></div>
+            <div class="text-xs text-gray-500 dark:text-gray-400 leading-relaxed" x-text="$t('success.next3_desc')"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA WhatsApp -->
+    <div class="fade-up delay-5">
+      <a :href="whatsappLink" target="_blank" class="wa-btn-main w-full mb-4">
+        <i class="bi bi-whatsapp text-2xl"></i>
+        <span x-text="$t('success.whatsapp')"></span>
+      </a>
+
+      <a href="index.html" class="back-link flex items-center justify-center gap-2 text-sm text-gray-400 hover:text-navy dark:hover:text-gold transition py-2" style="text-decoration:none">
+        <i class="bi bi-arrow-left text-xs"></i>
+        <span x-text="$t('success.back')"></span>
+      </a>
+    </div>
+
+  </div>
+</main>
+
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer-bg text-gray-500 py-8 text-center">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="flex items-center justify-center gap-3 mb-3">
+      <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background:#0C447C;border:1px solid rgba(250,199,117,0.2)">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#FAC775" stroke-width="2" stroke-linecap="round">
+          <path d="M12 2L4 7v5c0 5 3.5 9.7 8 11 4.5-1.3 8-6 8-11V7L12 2z"/>
+        </svg>
+      </div>
+      <span class="text-white text-sm font-medium" style="font-family:'Playfair Display',serif" x-text="$t('brand')"></span>
+    </div>
+    <p class="text-xs" x-text="$t('footer.copyright', { year: new Date().getFullYear() })"></p>
+    <div class="flex justify-center gap-6 mt-4">
+      <a href="#" class="text-xs hover:text-yellow-400 transition" x-text="$t('footer.privacy')"></a>
+      <a href="#" class="text-xs hover:text-yellow-400 transition" x-text="$t('footer.terms')"></a>
+      <a href="#" class="text-xs hover:text-yellow-400 transition" x-text="$t('footer.legal')"></a>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp floating -->
+<a :href="whatsappLink" target="_blank" class="wa-float fixed bottom-6 right-6 w-14 h-14 bg-green-500 hover:bg-green-600 text-white rounded-full flex items-center justify-center shadow-xl z-50 transition" title="WhatsApp">
+  <i class="bi bi-whatsapp text-2xl"></i>
+</a>
+
+
+<!-- ===== SCRIPT ===== -->
+<script>
+// ===== CONFIGURATION GLOBALE =====
+const CONFIG = {
+  whatsappNumber: '491771320599',
+  brand: 'Zorex Finance',
+  supportedLangs: ['de', 'fr', 'en', 'pt', 'el', 'it', 'es']  // ✅ DE en premier
+};
+
+// ===== FORMAT WHATSAPP PAR PAYS =====
+const WHATSAPP_FORMATS = {
+  'DE': '+49 XXX XXXXXXX', 'PT': '+351 XXX XXX XXX', 'GR': '+30 XXX XXX XXXX',
+  'AT': '+43 XXX XXXXXXX', 'IT': '+39 XXX XXX XXXX', 'CH': '+41 XX XXX XX XX',
+  'FR': '+33 X XX XX XX XX', 'ES': '+34 XXX XXX XXX'
+};
+
+function successPage() {
+  return {
+    form: {},
+    whatsappLink: '',
+    referenceId: '',
+    currentLang: { code: 'de', label: 'DE', name: 'Deutsch', flag: 'https://flagcdn.com/w40/de.png' }, // ✅ DE par défaut
+    languages: [
+      { code: 'de', label: 'DE', name: 'Deutsch', flag: 'https://flagcdn.com/w40/de.png' }, // ✅ En premier
+      { code: 'fr', label: 'FR', name: 'Français', flag: 'https://flagcdn.com/w40/fr.png' },
+      { code: 'en', label: 'EN', name: 'English',  flag: 'https://flagcdn.com/w40/gb.png' },
+      { code: 'pt', label: 'PT', name: 'Português', flag: 'https://flagcdn.com/w40/pt.png' },
+      { code: 'el', label: 'GR', name: 'Ελληνικά',  flag: 'https://flagcdn.com/w40/gr.png' },
+      { code: 'it', label: 'IT', name: 'Italiano',  flag: 'https://flagcdn.com/w40/it.png' },
+      { code: 'es', label: 'ES', name: 'Español',   flag: 'https://flagcdn.com/w40/es.png' }
+    ],
+
+    translations: {
+      de: {
+        title: "Anfrage erhalten | Zorex Finance",
+        brand: "Zorex Finance",
+        brand_tagline: "Finanzlösungen · Europa",
+        success: {
+          eyebrow: "Bestätigung Ihrer Anfrage",
+          title: "Anfrage erfolgreich gesendet!",
+          message: "Vielen Dank <strong>{prenom} {nom}</strong>, Ihre Finanzierungsanfrage wurde erfolgreich empfangen. Wir werden sie sorgfältig prüfen.",
+          response_time: "Ein Berater meldet sich innerhalb von 48 Stunden",
+          recap_title: "Zusammenfassung Ihrer Anfrage",
+          next_title: "Was passiert als nächstes?",
+          next1_title: "Empfang und Registrierung",
+          next1_desc: "Ihr Antrag wird sofort in unserem System erfasst und einem spezialisierten Berater zugewiesen.",
+          next2_title: "Analyse Ihres Profils",
+          next2_desc: "Unser Team prüft Ihren Antrag und meldet sich innerhalb von 48h, um die Konditionen zu präzisieren.",
+          next3_title: "Angebot und Auszahlung",
+          next3_desc: "Nach Genehmigung Ihres Antrags erhalten Sie ein personalisiertes Angebot und die Gelder werden schnell überwiesen.",
+          whatsapp: "Berater über WhatsApp kontaktieren",
+          whatsapp_greeting: "Hallo Zorex Finance",
+          whatsapp_thanks: "Vielen Dank und bitte melden Sie sich schnell!",
+          back_short: "Startseite",
+          back: "← Zurück zur Startseite",
+          reference_label: "Aktenzeichen"
+        },
+        form: {
+          fields: {
+            nom: "Nachname", prenom: "Vorname", email: "E-Mail",
+            pays: { label: "Wohnsitzland", placeholder: "Wohnsitzland" },
+            type: { placeholder: "Kreditart" },
+            montant: "Gewünschter Betrag",
+            adresse: "WhatsApp-Nummer",
+            codepostal: "Postleitzahl"
+          }
+        },
+        footer: {
+          copyright: "© {year} Zorex Finance. Alle Rechte vorbehalten.",
+          privacy: "Datenschutz", terms: "AGB", legal: "Impressum"
+        }
+      },
+
+      fr: {
+        title: "Demande reçue | Zorex Finance",
+        brand: "Zorex Finance",
+        brand_tagline: "Solutions financières · Europe",
+        success: {
+          eyebrow: "Confirmation de votre demande",
+          title: "Demande envoyée avec succès !",
+          message: "Merci <strong>{prenom} {nom}</strong>, votre demande de financement a bien été reçue. Nous allons l'étudier avec la plus grande attention.",
+          response_time: "Un conseiller vous contacte dans les 48h",
+          recap_title: "Récapitulatif de votre demande",
+          next_title: "Que se passe-t-il ensuite ?",
+          next1_title: "Réception et enregistrement",
+          next1_desc: "Votre dossier est immédiatement enregistré dans notre système et assigné à un conseiller spécialisé.",
+          next2_title: "Analyse et étude de votre profil",
+          next2_desc: "Notre équipe étudie votre demande et vous contacte sous 48h pour affiner les conditions et répondre à vos questions.",
+          next3_title: "Proposition et versement des fonds",
+          next3_desc: "Après validation de votre dossier, vous recevez une proposition personnalisée et les fonds sont versés rapidement.",
+          whatsapp: "Contacter un conseiller sur WhatsApp",
+          whatsapp_greeting: "Bonjour Zorex Finance",
+          whatsapp_thanks: "Merci de me recontacter rapidement !",
+          back_short: "Accueil",
+          back: "← Retourner à l'accueil",
+          reference_label: "Référence dossier"
+        },
+        form: {
+          fields: {
+            nom: "Nom", prenom: "Prénom", email: "E-mail",
+            pays: { label: "Pays de résidence", placeholder: "Pays de résidence" },
+            type: { placeholder: "Type de prêt" },
+            montant: "Montant souhaité",
+            adresse: "Numéro WhatsApp",
+            codepostal: "Code postal"
+          }
+        },
+        footer: {
+          copyright: "© {year} Zorex Finance. Tous droits réservés.",
+          privacy: "Confidentialité", terms: "CGU", legal: "Mentions légales"
+        }
+      },
+
+      en: {
+        title: "Request Received | Zorex Finance",
+        brand: "Zorex Finance",
+        brand_tagline: "Financial solutions · Europe",
+        success: {
+          eyebrow: "Application confirmation",
+          title: "Request sent successfully!",
+          message: "Thank you <strong>{prenom} {nom}</strong>, your financing request has been successfully received. We will review it with great care.",
+          response_time: "An advisor will contact you within 48h",
+          recap_title: "Summary of your application",
+          next_title: "What happens next?",
+          next1_title: "Receipt and registration",
+          next1_desc: "Your application is immediately registered in our system and assigned to a specialized advisor.",
+          next2_title: "Analysis of your profile",
+          next2_desc: "Our team reviews your application and will contact you within 48h to refine the conditions and answer your questions.",
+          next3_title: "Offer and fund transfer",
+          next3_desc: "After your application is approved, you receive a personalized offer and the funds are transferred quickly.",
+          whatsapp: "Contact an advisor on WhatsApp",
+          whatsapp_greeting: "Hello Zorex Finance",
+          whatsapp_thanks: "Thank you and please get back to me soon!",
+          back_short: "Home",
+          back: "← Return to home",
+          reference_label: "Reference ID"
+        },
+        form: {
+          fields: {
+            nom: "Last name", prenom: "First name", email: "Email",
+            pays: { label: "Country of residence", placeholder: "Country of residence" },
+            type: { placeholder: "Loan type" },
+            montant: "Desired amount",
+            adresse: "WhatsApp number",
+            codepostal: "Postal code"
+          }
+        },
+        footer: {
+          copyright: "© {year} Zorex Finance. All rights reserved.",
+          privacy: "Privacy policy", terms: "Terms", legal: "Legal notice"
+        }
+      },
+
+      pt: {
+        title: "Pedido recebido | Zorex Finance",
+        brand: "Zorex Finance",
+        brand_tagline: "Soluções financeiras · Europa",
+        success: {
+          eyebrow: "Confirmação do seu pedido",
+          title: "Pedido enviado com sucesso!",
+          message: "Obrigado <strong>{prenom} {nom}</strong>, o seu pedido de financiamento foi recebido. Vamos analisá-lo com toda a atenção.",
+          response_time: "Um consultor entrará em contacto nas próximas 48h",
+          recap_title: "Resumo do seu pedido",
+          next_title: "O que acontece a seguir?",
+          next1_title: "Receção e registo",
+          next1_desc: "O seu dossier é imediatamente registado no nosso sistema e atribuído a um consultor especializado.",
+          next2_title: "Análise do seu perfil",
+          next2_desc: "A nossa equipa analisa o seu pedido e contacta-o em 48h para afinar as condições.",
+          next3_title: "Proposta e transferência de fundos",
+          next3_desc: "Após validação, recebe uma proposta personalizada e os fundos são transferidos rapidamente.",
+          whatsapp: "Contactar um consultor no WhatsApp",
+          whatsapp_greeting: "Olá Zorex Finance",
+          whatsapp_thanks: "Obrigado e por favor contacte-me rapidamente!",
+          back_short: "Início",
+          back: "← Voltar ao início",
+          reference_label: "Referência do processo"
+        },
+        form: {
+          fields: {
+            nom: "Apelido", prenom: "Nome próprio", email: "E-mail",
+            pays: { label: "País de residência", placeholder: "País de residência" },
+            type: { placeholder: "Tipo de empréstimo" },
+            montant: "Montante desejado",
+            adresse: "Número WhatsApp",
+            codepostal: "Código postal"
+          }
+        },
+        footer: {
+          copyright: "© {year} Zorex Finance. Todos os direitos reservados.",
+          privacy: "Privacidade", terms: "Termos", legal: "Aviso legal"
+        }
+      },
+
+      el: {
+        title: "Αίτηση ελήφθη | Zorex Finance",
+        brand: "Zorex Finance",
+        brand_tagline: "Χρηματοδοτήσεις · Ευρώπη",
+        success: {
+          eyebrow: "Επιβεβαίωση αίτησης",
+          title: "Η αίτηση εστάλη με επιτυχία!",
+          message: "Ευχαριστούμε <strong>{prenom} {nom}</strong>, η αίτηση χρηματοδότησής σας ελήφθη. Θα την εξετάσουμε με προσοχή.",
+          response_time: "Ένας σύμβουλος θα επικοινωνήσει εντός 48ωρου",
+          recap_title: "Σύνοψη της αίτησής σας",
+          next_title: "Τι ακολουθεί;",
+          next1_title: "Λήψη και καταχώριση",
+          next1_desc: "Η αίτησή σας καταχωρείται άμεσα και ανατίθεται σε εξειδικευμένο σύμβουλο.",
+          next2_title: "Ανάλυση προφίλ",
+          next2_desc: "Η ομάδα μας εξετάζει την αίτηση και επικοινωνεί εντός 48ωρου για διευκρινίσεις.",
+          next3_title: "Προσφορά και μεταφορά κεφαλαίων",
+          next3_desc: "Μετά την έγκριση, λαμβάνετε προσωποποιημένη προσφορά και τα κεφάλαια μεταφέρονται γρήγορα.",
+          whatsapp: "Επικοινωνία με σύμβουλο στο WhatsApp",
+          whatsapp_greeting: "Γεια σας Zorex Finance",
+          whatsapp_thanks: "Ευχαριστώ και παρακαλώ επικοινωνήστε σύντομα!",
+          back_short: "Αρχική",
+          back: "← Επιστροφή στην αρχική",
+          reference_label: "Αριθμός φακέλου"
+        },
+        form: {
+          fields: {
+            nom: "Επώνυμο", prenom: "Όνομα", email: "E-mail",
+            pays: { label: "Χώρα κατοικίας", placeholder: "Χώρα κατοικίας" },
+            type: { placeholder: "Τύπος δανείου" },
+            montant: "Επιθυμητό ποσό",
+            adresse: "Αριθμός WhatsApp",
+            codepostal: "Ταχυδρομικός κώδικας"
+          }
+        },
+        footer: {
+          copyright: "© {year} Zorex Finance. Με επιφύλαξη παντός δικαιώματος.",
+          privacy: "Απόρρητο", terms: "Όροι", legal: "Νομική σημείωση"
+        }
+      },
+
+      it: {
+        title: "Richiesta ricevuta | Zorex Finance",
+        brand: "Zorex Finance",
+        brand_tagline: "Soluzioni finanziarie · Europa",
+        success: {
+          eyebrow: "Conferma della richiesta",
+          title: "Richiesta inviata con successo!",
+          message: "Grazie <strong>{prenom} {nom}</strong>, la vostra richiesta di finanziamento è stata ricevuta. La esamineremo con grande attenzione.",
+          response_time: "Un consulente vi contatterà entro 48h",
+          recap_title: "Riepilogo della vostra richiesta",
+          next_title: "Cosa succede ora?",
+          next1_title: "Ricezione e registrazione",
+          next1_desc: "La vostra pratica viene immediatamente registrata e assegnata a un consulente specializzato.",
+          next2_title: "Analisi del profilo",
+          next2_desc: "Il nostro team esamina la richiesta e vi contatta entro 48h per definire le condizioni.",
+          next3_title: "Proposta e trasferimento fondi",
+          next3_desc: "Dopo l'approvazione, ricevete un'offerta personalizzata e i fondi vengono trasferiti rapidamente.",
+          whatsapp: "Contattare un consulente su WhatsApp",
+          whatsapp_greeting: "Salve Zorex Finance",
+          whatsapp_thanks: "Grazie e vi prego di ricontattarmi presto!",
+          back_short: "Home",
+          back: "← Torna alla home",
+          reference_label: "Riferimento pratica"
+        },
+        form: {
+          fields: {
+            nom: "Cognome", prenom: "Nome", email: "E-mail",
+            pays: { label: "Paese di residenza", placeholder: "Paese di residenza" },
+            type: { placeholder: "Tipo di prestito" },
+            montant: "Importo desiderato",
+            adresse: "Numero WhatsApp",
+            codepostal: "Codice postale"
+          }
+        },
+        footer: {
+          copyright: "© {year} Zorex Finance. Tutti i diritti riservati.",
+          privacy: "Privacy", terms: "Termini", legal: "Note legali"
+        }
+      },
+
+      es: {
+        title: "Solicitud recibida | Zorex Finance",
+        brand: "Zorex Finance",
+        brand_tagline: "Soluciones financieras · Europa",
+        success: {
+          eyebrow: "Confirmación de su solicitud",
+          title: "¡Solicitud enviada con éxito!",
+          message: "Gracias <strong>{prenom} {nom}</strong>, su solicitud de financiación ha sido recibida. La estudiaremos con gran atención.",
+          response_time: "Un asesor le contactará en las próximas 48h",
+          recap_title: "Resumen de su solicitud",
+          next_title: "¿Qué sucede ahora?",
+          next1_title: "Recepción y registro",
+          next1_desc: "Su expediente se registra inmediatamente y se asigna a un asesor especializado.",
+          next2_title: "Análisis de su perfil",
+          next2_desc: "Nuestro equipo examina su solicitud y le contacta en 48h para afinar las condiciones.",
+          next3_title: "Propuesta y transferencia de fondos",
+          next3_desc: "Tras la validación, recibe una propuesta personalizada y los fondos se transfieren rápidamente.",
+          whatsapp: "Contactar con un asesor por WhatsApp",
+          whatsapp_greeting: "Hola Zorex Finance",
+          whatsapp_thanks: "¡Gracias y por favor contácteme pronto!",
+          back_short: "Inicio",
+          back: "← Volver al inicio",
+          reference_label: "Referencia de expediente"
+        },
+        form: {
+          fields: {
+            nom: "Apellido", prenom: "Nombre", email: "E-mail",
+            pays: { label: "País de residencia", placeholder: "País de residencia" },
+            type: { placeholder: "Tipo de préstamo" },
+            montant: "Importe deseado",
+            adresse: "Número WhatsApp",
+            codepostal: "Código postal"
+          }
+        },
+        footer: {
+          copyright: "© {year} Zorex Finance. Todos los derechos reservados.",
+          privacy: "Privacidad", terms: "Términos", legal: "Aviso legal"
+        }
+      }
+    },
+
+    init() {
+      this.$store.theme.init();
+      // ✅ Détection de langue avec fallback sur 'de' (allemand)
+      let langCode = localStorage.getItem('zorex_lang') || navigator.language.split('-')[0];
+      if (!CONFIG.supportedLangs.includes(langCode)) langCode = 'de'; // ✅ Fallback allemand
+      this.currentLang = this.languages.find(l => l.code === langCode) || this.languages[0];
+      document.documentElement.lang = this.currentLang.code;
+      this.generateReferenceId();
+      this.loadData();
+    },
+
+    generateReferenceId() {
+      const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+      let id = 'ZRX-' + new Date().getFullYear() + '-';
+      for (let i = 0; i < 6; i++) id += chars.charAt(Math.floor(Math.random() * chars.length));
+      this.referenceId = id;
+    },
+
+    selectLang(lang) {
+      this.currentLang = lang;
+      localStorage.setItem('zorex_lang', lang.code);
+      document.documentElement.lang = lang.code;
+      this.updateWhatsAppLink();
+    },
+
+    $t(key, params = {}) {
+      const dict = this.translations[this.currentLang.code] || this.translations.de; // ✅ Fallback sur allemand
+      let text = key.split('.').reduce((o, k) => o?.[k], dict) ?? key;
+      Object.entries(params).forEach(([k, v]) => { text = text.replaceAll(`{${k}}`, v); });
+      return text;
+    },
+
+    getCountryLabel(code) {
+      const labels = {
+        'DE': '🇩🇪 Deutschland (+49)', 'PT': '🇵🇹 Portugal (+351)', 'GR': '🇬🇷 Griechenland (+30)',
+        'AT': '🇦🇹 Österreich (+43)', 'IT': '🇮🇹 Italia (+39)', 'CH': '🇨🇭 Schweiz (+41)',
+        'FR': '🇫🇷 France (+33)', 'ES': '🇪🇸 España (+34)'
+      };
+      return labels[code] || code;
+    },
+
+    getLoanTypeLabel(type) {
+      const labels = {
+        'personal': this.$t('offers.personal.title'),
+        'immobilier': this.$t('offers.immobilier.title'),
+        'auto': this.$t('offers.auto.title'),
+        'professionnel': this.$t('form.fields.type.professionnel'),
+        'etudiant': this.$t('form.fields.type.etudiant')
+      };
+      return labels[type] || type;
+    },
+
+    formatAmount(amount) {
+      const num = parseFloat(amount);
+      if (isNaN(num)) return amount + ' €';
+      // ✅ Formatage adapté à la langue actuelle
+      const locale = this.currentLang.code === 'de' ? 'de-DE' : 
+                     this.currentLang.code === 'fr' ? 'fr-FR' :
+                     this.currentLang.code === 'it' ? 'it-IT' :
+                     this.currentLang.code === 'es' ? 'es-ES' :
+                     this.currentLang.code === 'pt' ? 'pt-PT' :
+                     this.currentLang.code === 'el' ? 'el-GR' : 'en-GB';
+      return num.toLocaleString(locale) + ' €';
+    },
+
+    loadData() {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (!urlParams.has('nom')) {
+        window.location.replace('index.html');
+        return;
+      }
+      this.form = {
+        nom: urlParams.get('nom') || '',
+        prenom: urlParams.get('prenom') || '',
+        email: urlParams.get('email') || '',
+        pays: urlParams.get('pays') || '',
+        type: urlParams.get('type') || '',
+        montant: urlParams.get('montant') || '',
+        adresse: urlParams.get('adresse') || '',
+        codepostal: urlParams.get('codepostal') || ''
+      };
+      this.updateWhatsAppLink();
+    },
+
+    updateWhatsAppLink() {
+      const message = [
+        this.$t('success.whatsapp_greeting'),
+        '',
+        `📋 ${this.$t('success.reference_label')}: ${this.referenceId}`,
+        `👤 ${this.$t('form.fields.prenom')}: ${this.form.prenom}`,
+        `👤 ${this.$t('form.fields.nom')}: ${this.form.nom}`,
+        `📧 ${this.$t('form.fields.email')}: ${this.form.email}`,
+        `🌍 ${this.$t('form.fields.pays.label')}: ${this.getCountryLabel(this.form.pays)}`,
+        `💰 ${this.$t('form.fields.type.placeholder')}: ${this.getLoanTypeLabel(this.form.type)}`,
+        `💶 ${this.$t('form.fields.montant')}: ${this.formatAmount(this.form.montant)}`,
+        `📱 ${this.$t('form.fields.adresse')}: ${this.form.adresse}`,
+        `📮 ${this.$t('form.fields.codepostal')}: ${this.form.codepostal}`,
+        '',
+        this.$t('success.whatsapp_thanks')
+      ].join('\n');
+      this.whatsappLink = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`;
+    }
+  }
+}
+</script>
+
+</body>
+</html>
