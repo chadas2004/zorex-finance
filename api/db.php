@@ -17,7 +17,15 @@ $user = getenv('DB_USER');
 $pass = getenv('DB_PASS');
 
 // DSN PostgreSQL — sslmode=require est obligatoire pour Neon
-$dsn = "pgsql:host=$host;port=5432;dbname=$db;sslmode=require";
+//
+// Neon route les connexions via SNI (Server Name Indication), mais la
+// version de libpq embarquée dans le runtime PHP de Vercel est trop
+// ancienne pour le supporter. On doit donc préciser l'endpoint ID
+// manuellement via le paramètre "options" (cf. https://neon.tech/sni).
+// L'endpoint ID est le premier segment du nom d'hôte, avant le premier point.
+$endpointId = explode('.', $host)[0];
+
+$dsn = "pgsql:host=$host;port=5432;dbname=$db;sslmode=require;options='endpoint=$endpointId'";
 
 $options = [
     PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
