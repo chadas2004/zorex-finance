@@ -1,6 +1,6 @@
 <?php
 session_start();
-require '../db.php';
+require __DIR__ . '/../db.php';
 if(!isset($_SESSION['admin'])) exit;
 
 $page = (int)($_GET['page'] ?? 1);

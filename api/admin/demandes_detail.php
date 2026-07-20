@@ -1,6 +1,6 @@
 <?php
 session_start();
-require '../db.php';
+require __DIR__ . '/../db.php';
 
 // Vérification de l'ID
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
