@@ -7,7 +7,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 require __DIR__ . '/vendor/autoload.php';
-require __DIR__ . '/db.php'; // fournit $pdo (connexion Neon/Postgres)
+require __DIR__ . '/includes/db.php'; // ✅ C'est corrigé ici !
 
 /* ===============================================================
    CONFIGURATION SMTP — via variables d'environnement Vercel
